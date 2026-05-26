@@ -1,0 +1,102 @@
+[
+  {
+    "persona_id": "D-01",
+    "persona_type": "demographic",
+    "description": "Male, 21, Singapore, student, budget-conscious online shopper."
+  },
+  {
+    "persona_id": "D-02",
+    "persona_type": "demographic",
+    "description": "Female, 58, Vietnam, engineer, impulse buyer online shopper."
+  },
+  {
+    "persona_id": "D-03",
+    "persona_type": "demographic",
+    "description": "Female, 59, Brazil, teacher, deal-hunter online shopper."
+  },
+  {
+    "persona_id": "D-04",
+    "persona_type": "demographic",
+    "description": "Female, 24, Thailand, designer, brand-loyal online shopper."
+  },
+  {
+    "persona_id": "D-05",
+    "persona_type": "demographic",
+    "description": "Non-binary, 37, Canada, manager, quality-focused online shopper."
+  },
+  {
+    "persona_id": "D-06",
+    "persona_type": "demographic",
+    "description": "Male, 30, France, nurse, eco-conscious online shopper."
+  },
+  {
+    "persona_id": "D-07",
+    "persona_type": "demographic",
+    "description": "Female, 24, Philippines, artist, budget-conscious online shopper."
+  },
+  {
+    "persona_id": "D-08",
+    "persona_type": "demographic",
+    "description": "Male, 57, United Kingdom, developer, impulse buyer online shopper."
+  },
+  {
+    "persona_id": "D-09",
+    "persona_type": "demographic",
+    "description": "Female, 32, Germany, accountant, deal-hunter online shopper."
+  },
+  {
+    "persona_id": "D-10",
+    "persona_type": "demographic",
+    "description": "Female, 30, Indonesia, writer, brand-loyal online shopper."
+  },
+  {
+    "persona_id": "D-11",
+    "persona_type": "demographic",
+    "description": "Male, 42, Vietnam, student, quality-focused online shopper."
+  },
+  {
+    "persona_id": "D-12",
+    "persona_type": "demographic",
+    "description": "Non-binary, 18, United States, engineer, eco-conscious online shopper."
+  },
+  {
+    "persona_id": "D-13",
+    "persona_type": "demographic",
+    "description": "Male, 20, Malaysia, teacher, budget-conscious online shopper."
+  },
+  {
+    "persona_id": "D-14",
+    "persona_type": "demographic",
+    "description": "Male, 31, Italy, designer, impulse buyer online shopper."
+  },
+  {
+    "persona_id": "D-15",
+    "persona_type": "demographic",
+    "description": "Female, 30, Spain, manager, deal-hunter online shopper."
+  },
+  {
+    "persona_id": "D-16",
+    "persona_type": "demographic",
+    "description": "Male, 29, Japan, nurse, brand-loyal online shopper."
+  },
+  {
+    "persona_id": "D-17",
+    "persona_type": "demographic",
+    "description": "Female, 29, Australia, artist, quality-focused online shopper."
+  },
+  {
+    "persona_id": "D-18",
+    "persona_type": "demographic",
+    "description": "Female, 64, India, developer, eco-conscious online shopper."
+  },
+  {
+    "persona_id": "D-19",
+    "persona_type": "demographic",
+    "description": "Male, 43, South Korea, accountant, budget-conscious online shopper."
+  },
+  {
+    "persona_id": "D-20",
+    "persona_type": "demographic",
+    "description": "Female, 56, Mexico, writer, impulse buyer online shopper."
+  }
+]

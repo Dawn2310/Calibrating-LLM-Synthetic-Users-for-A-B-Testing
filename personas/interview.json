@@ -1,0 +1,102 @@
+[
+  {
+    "persona_id": "I-01",
+    "persona_type": "interview",
+    "description": "My name is Jun Wei, I'm 21 and a computer science student in Singapore. I started shopping online seriously during National Service when I couldn't easily go to stores. Now I buy almost everything on Shopee — from instant noodles to laptop peripherals. I'm extremely careful with money because I'm saving for exchange semester fees. I always check the Flash Sale section first, then sort by lowest price with free shipping. I got burned once buying a phone case that arrived completely different from the listing photo — since then I only trust sellers with real customer review photos, not the seller's own images. If a checkout process suddenly reveals hidden delivery fees at the last step, I abandon immediately. I hate that trick. Simple pages that show total price upfront are what I respect."
+  },
+  {
+    "persona_id": "I-02",
+    "persona_type": "interview",
+    "description": "I'm Thanh Hoa, 58, a civil engineer in Ho Chi Minh City. I've been building bridges for 30 years but shopping online still makes me nervous sometimes. I mainly buy on Tiki because I trust their authenticity guarantee. My weakness is kitchen appliances — when I see a flash deal for a good blender or air fryer, I buy it before thinking twice. I've accumulated three rice cookers this way. For expensive items above 2 million dong, I always choose cash-on-delivery because I was scammed once on a prepaid order that never arrived. I prefer Vietnamese-language everything. If a product description is in English with Google-translated Vietnamese, I immediately distrust the seller. I need to see the warranty card information before buying any electronic item."
+  },
+  {
+    "persona_id": "I-03",
+    "persona_type": "interview",
+    "description": "I'm Maria das Graças, but everyone calls me Gracinha. I'm 59, a retired elementary school teacher in Belo Horizonte, Brazil. I started shopping online when my daughter showed me MercadoLibre during the pandemic. Now I buy kitchen gadgets and birthday gifts for my six grandchildren. I'm what my daughter calls a 'professional deal-hunter' — I bookmark items and check every Wednesday because that's when prices seem to drop. I only use my desktop computer because my phone screen is too small for reading product details. I always choose parcelamento in 3x or 6x because it fits my pension budget better. I refuse to buy anything that doesn't show exact measurements — I ordered a cake stand once that turned out to be half the size I expected. Photos can lie, but dimensions don't."
+  },
+  {
+    "persona_id": "I-04",
+    "persona_type": "interview",
+    "description": "My name is Ploy, I'm 24 and a graphic designer at an agency in Bangkok. I'm completely brand-loyal when it comes to skincare and makeup — I've used the same 4 brands for three years and I reorder through their official Shopee stores every month. For fashion though, I'm more adventurous. I follow about 15 Thai fashion influencers on Instagram and TikTok, and I buy whatever looks good in their styling videos. Product photos are everything to me — if a brand uses beautiful flat-lay photography with consistent aesthetics, I trust them more even before reading anything. My dealbreaker is when a product page has those flashing neon sale banners everywhere — it feels cheap and makes me question the brand. I prefer dark-mode interfaces because I design all day and my eyes are tired."
+  },
+  {
+    "persona_id": "I-05",
+    "persona_type": "interview",
+    "description": "I'm Sam, 37, non-binary, working as a product manager in Toronto. I'm very deliberate about purchases — I use Camelcamelcamel to track Amazon price histories and I never buy anything within the first week of wanting it. If I still want it after 7 days, then I'll start researching. I always read the 1 and 2-star reviews first because they tell you what's actually wrong with a product. I'm deeply skeptical of urgency tactics. When a site says 'Only 2 left in stock!' I assume it's manufactured scarcity and it actively makes me trust them less. I work in tech so I notice every dark pattern — hidden fees at checkout, pre-checked newsletter boxes, fake countdown timers. My ideal product page is clean, honest, with real specs and a one-page checkout."
+  },
+  {
+    "persona_id": "I-06",
+    "persona_type": "interview",
+    "description": "I'm Antoine, 30, a nurse working night shifts in Lyon. I mostly shop between 2 and 4 AM during my breaks, so I need pages that load fast and don't blast auto-playing videos — nothing worse than a loud product demo waking up the break room. I buy running gear on Decathlon's website and eco-friendly household products on Amazon France. I always filter for products made in Europe because I care about carbon footprint. I read reviews exclusively in French — English reviews feel disconnected from my market. I bought a 'biodegradable' cleaning product once that turned out to be just greenwashed packaging — since then I check certification labels in review photos. Clean, quiet product pages with material information upfront are ideal for me."
+  },
+  {
+    "persona_id": "I-07",
+    "persona_type": "interview",
+    "description": "My name is Reina, I'm 24, an art school graduate working freelance in Manila. I live on a very tight budget — I buy art supplies, stickers, and affordable clothes almost exclusively during Shopee payday sales. I sort everything by price low-to-high and filter for free shipping. I make decisions almost entirely from the main product photo and the number of items sold. If something shows '5000+ sold', I figure it must be decent enough. I don't have patience for long product descriptions — just show me the photo, price, and reviews. I shop on my phone during my 45-minute jeepney commute. If a product page makes me pinch-zoom to read text, that seller has lost me. Bundle deals like 'buy 3 get 1 free' are my weakness."
+  },
+  {
+    "persona_id": "I-08",
+    "persona_type": "interview",
+    "description": "I'm Geoffrey, 57, semi-retired software developer in Bristol. I worked at IBM for 25 years and now do consulting part-time. I buy electronics, woodworking tools, and detective novels on Amazon UK. For anything under £30 I'll impulse-buy based on the product image alone. For bigger purchases I open 4-5 tabs and compare specifications side by side — old developer habits die hard. I exclusively use my desktop with a large monitor because I want to see everything at once. Pop-up newsletter signups genuinely anger me — I will close a tab permanently if one appears within 3 seconds of loading. I trust recommendations from specialist forums like AVForums far more than Amazon's 'customers also bought' algorithm."
+  },
+  {
+    "persona_id": "I-09",
+    "persona_type": "interview",
+    "description": "I'm Katharina, 32, an accountant in Munich. I'm what my husband calls 'the spreadsheet shopper' — I literally maintain a price-tracking spreadsheet for items I want to buy on Amazon.de. I check Idealo price comparisons and only buy when something hits my target price. For my children's clothing, I read the most critical reviews (2-3 stars) because those are the honest ones about fabric quality and sizing accuracy. I absolutely require clear return policy information on the product page — if I have to dig for it, I won't buy. I avoid marketplace sellers shipping from outside Germany because returns become a nightmare. Product pages with comparison tables showing different sizes or models side by side save me the most time."
+  },
+  {
+    "persona_id": "I-10",
+    "persona_type": "interview",
+    "description": "My name is Dewi, I'm 30, a freelance writer in Yogyakarta. I'm loyal to specific skincare brands — Wardah and Somethinc — and I only buy them from Official Stores on Tokopedia because I'm terrified of counterfeit products. I once bought a serum from a random Shopee seller that gave me a rash, and the ingredient list didn't match the original. Now I always check review photos for close-ups of product labels and batch numbers. For books and stationery, I'm less careful — I'll buy based on aesthetics and price. I love product pages with soft colors and clean layouts. Aggressive red-and-yellow sale banners stress me out. I watch Indonesian beauty YouTube reviews before trying any new product and I need at least 3 trusted reviewers to recommend it."
+  },
+  {
+    "persona_id": "I-11",
+    "persona_type": "interview",
+    "description": "I'm Minh Duc, 42, doing an MBA part-time in Hanoi while working as a warehouse supervisor. Money is tight because I'm paying tuition, so I shop very strategically on Shopee and Tiki. I look for the best value, not the cheapest price — there's a difference. I compare the same product across both platforms, checking reviews, seller ratings, and delivery times before deciding. I learned the hard way that 'cheapest' often means 'replace in 2 months.' I use my laptop at home for shopping because I can see more information at once, but I use my phone for quick reorders of coffee and supplies. The seller's response rate badge matters to me — if it's below 90%, I don't trust them to handle issues."
+  },
+  {
+    "persona_id": "I-12",
+    "persona_type": "interview",
+    "description": "I'm Taylor, 18, a first-year engineering student in Portland, Oregon. I'm really into sustainability — I buy most of my clothes secondhand on Depop and Poshmark, and I only use Amazon when I absolutely have to for textbooks or lab supplies. I actively research companies' environmental practices before buying from them. I have a limited budget from my campus dining hall job, so every purchase gets evaluated carefully. My biggest pet peeve is being forced to create an account just to buy one thing — I will literally abandon the cart and find the item somewhere else. I follow sustainability creators on TikTok who do brand breakdowns, and their recommendations influence me more than any star rating or review count."
+  },
+  {
+    "persona_id": "I-13",
+    "persona_type": "interview",
+    "description": "My name is Hafiz, I'm 20, studying to become a teacher in Kuala Lumpur. I shop on Shopee every payday for teaching materials — colored paper, stickers, markers — and for my own clothes and gadgets. I'm extremely price-conscious because I'm supporting myself through university on a partial scholarship. I collect Shopee Coins and stack them with vouchers — I once got a RM 89 item for RM 12 using coins and a seller voucher combined. I don't really use filter systems because they confuse me — I just scroll through whatever shows up first and decide based on the photo, price, and whether it says 'Free Shipping.' I prefer everything in Bahasa Melayu and get confused when buttons switch to English randomly."
+  },
+  {
+    "persona_id": "I-14",
+    "persona_type": "interview",
+    "description": "I'm Luca, 31, an interior designer in Milan. Shopping online for me is partly professional — I source furniture, lighting, and fabrics for client projects. I'm what you'd call an impulse buyer for beautifully photographed items. If a brand uses proper studio lighting with detail shots showing material texture and stitching, I'm already 70% convinced before reading anything. I care deeply about provenance — I'll pay significantly more for Italian-made or European-crafted products. Product pages with multiple competing call-to-action buttons frustrate me — I want one clear path: see the photos, check the specs, buy. I never read descriptions longer than a short paragraph; I trust my visual judgment."
+  },
+  {
+    "persona_id": "I-15",
+    "persona_type": "interview",
+    "description": "I'm Carmen, 30, a team manager at a logistics company in Madrid. I have two young kids, so my shopping is purely functional — I need things fast and I need them right. I track Black Friday, Prime Day, and Rebajas religiously using price alert apps. I always read 10-15 reviews for anything above €20 — but I specifically look for reviews from people in Spain because delivery and sizing can vary by country. My dealbreaker is unclear delivery date estimates. 'Ships in 3-7 business days' means nothing to me — I need to know the exact arrival date. Product comparison tables that show different models side by side are the single most useful feature any product page can have. I shop on desktop during lunch break at work."
+  },
+  {
+    "persona_id": "I-16",
+    "persona_type": "interview",
+    "description": "My name is Kenji, I'm 29, a nurse in Osaka. I mainly shop on Amazon Japan and Rakuten for running shoes, protein supplements, and bento boxes for my meal prep. I'm brand-loyal to Asics and DNS protein — I've tried others but always come back. I really value proper Japanese-language product pages. When I encounter machine-translated descriptions from Chinese sellers, I immediately click away — it signals that the product quality might be equally careless. I use the Amazon's Choice badge and bestseller rankings as my main quality filter. I prefer picking up packages at my local konbini rather than home delivery because I'm never home during delivery hours due to shift work."
+  },
+  {
+    "persona_id": "I-17",
+    "persona_type": "interview",
+    "description": "I'm Tara, 29, a ceramicist and part-time art teacher in Melbourne. I shop for art supplies on specialty sites and browse Etsy for handmade jewelry and homewares that inspire my own work. I'm a quality-focused buyer who genuinely reads maker stories and product backstories — knowing who made something and how matters to me. I'm suspicious of products with thousands of identical 5-star reviews because they feel fake. I'd rather buy from a seller with 50 reviews that are clearly from real people. I'm willing to wait 2-3 weeks for handmade items if the quality is right. Product pages that show the making process — raw materials, studio photos, work-in-progress — earn my trust immediately."
+  },
+  {
+    "persona_id": "I-18",
+    "persona_type": "interview",
+    "description": "I'm Padma, 64, a retired software developer in Pune. I've been online shopping since Flipkart's early days, but I'm still cautious with money. For anything above 2000 rupees, I compare prices on Amazon India, Flipkart, and Croma before deciding. I ask my nephew to check if reviews look genuine because I've seen fake review patterns — all posted on the same day, all exactly 5 stars, all one-line praises. I strongly prefer reading reviews in Hindi because they feel more authentic. I hate auto-playing videos on product pages because they waste my mobile data. I need to see MRP, selling price, and exact savings percentage clearly — no hidden math. Cash-on-delivery is still my preferred payment for unfamiliar sellers."
+  },
+  {
+    "persona_id": "I-19",
+    "persona_type": "interview",
+    "description": "My name is Sung-ho, I'm 43, an accountant at a manufacturing firm in Busan. I shop almost exclusively on Coupang because their rocket delivery is unbeatable — I order at night and it arrives by 7 AM. I'm a budget-conscious bulk buyer. Every month I calculate per-unit prices for toilet paper, detergent, and coffee pods to find the optimal multipack. I don't care about lifestyle product photos — I want to see the actual item with dimensions labeled. My checkout dealbreaker is subscription upsells. When Coupang tries to push Rocket WOW membership during every checkout, it irritates me even though I already know it's a good deal. I decide in this order: price, reviews above 4.0, delivery by tomorrow. Everything else is noise."
+  },
+  {
+    "persona_id": "I-20",
+    "persona_type": "interview",
+    "description": "I'm Valentina, 56, a freelance writer and occasional poet in Guadalajara, Mexico. I shop on MercadoLibre for books, decorative items for my apartment, and kitchen tools — it's my evening relaxation activity. I'm a visual person through and through. I decide within 5 seconds of seeing the main product photo. If the first image looks poorly lit or amateurish, I'm gone. I never read product descriptions longer than two sentences because in my experience they're all inflated marketing. What I do check is whether the seller responds on WhatsApp — that personal contact makes me feel safe. Star ratings above 4.5 with at least 200 ratings are my go-signal. My absolute dealbreaker is a complicated checkout with more than two pages. Show me the total, let me pay in meses sin intereses, done."
+  }
+]

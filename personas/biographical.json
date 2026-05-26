@@ -1,0 +1,102 @@
+[
+  {
+    "persona_id": "B-01",
+    "persona_type": "biographical",
+    "description": "21-year-old male student in Singapore. Shops on Shopee and Lazada 3-4 times monthly for textbooks, snacks, and phone accessories. Extremely price-sensitive — always applies voucher codes and waits for 9.9 or 11.11 sales. Browses exclusively on mobile. Gets frustrated by cluttered product pages with too many banners. Trusts products with 500+ reviews and ignores anything below 4.5 stars. Never buys from sellers without a chat response within 1 hour."
+  },
+  {
+    "persona_id": "B-02",
+    "persona_type": "biographical",
+    "description": "58-year-old female engineer in Vietnam. Despite her technical background, she prefers simple shopping interfaces. Buys household appliances and gardening supplies on Tiki, often impulsively after seeing flash deal notifications. Comfortable with online payment but insists on COD for orders above 2 million VND from unfamiliar sellers. Reads only the first 3 reviews. Dislikes English-language product descriptions on Vietnamese platforms."
+  },
+  {
+    "persona_id": "B-03",
+    "persona_type": "biographical",
+    "description": "59-year-old female retired teacher in Brazil. Shops on MercadoLibre for kitchen gadgets and gifts for grandchildren. Patient deal-hunter who bookmarks items and checks prices weekly before buying. Uses desktop computer exclusively — finds mobile text too small. Prefers installment payment options (parcelamento). Suspicious of products with only perfect reviews. Values detailed size/dimension information over marketing photos."
+  },
+  {
+    "persona_id": "B-04",
+    "persona_type": "biographical",
+    "description": "24-year-old female designer in Thailand. Shops on Shopee for fashion and accessories, loyal to 3-4 favorite brands she follows. Visual-first shopper — product photos determine 80% of her decision. Influenced by Instagram and TikTok product reviews from Thai creators. Willing to pay 30% premium for brands she recognizes. Ignores generic product descriptions but reads comments with customer photos carefully. Prefers dark-mode interfaces."
+  },
+  {
+    "persona_id": "B-05",
+    "persona_type": "biographical",
+    "description": "37-year-old non-binary manager in Canada. Shops on Amazon for home office equipment and specialty coffee supplies. Quality-over-price buyer who reads negative reviews first to identify dealbreakers. Uses browser extensions to track price history. Actively avoids products with 'Limited time!' urgency signals — views them as manipulation. Prefers detailed spec tables over bullet-point marketing. Orders exclusively with free returns available."
+  },
+  {
+    "persona_id": "B-06",
+    "persona_type": "biographical",
+    "description": "30-year-old male nurse in France. Shops on Amazon France and Cdiscount for eco-friendly household products and running gear. Filters by sustainability certifications when available. Middle income but willing to pay more for European-made products. Reads reviews in French only. Dislikes auto-playing product videos because he often shops during night shifts. Prefers clean, minimalist product layouts with clear ingredient/material lists."
+  },
+  {
+    "persona_id": "B-07",
+    "persona_type": "biographical",
+    "description": "24-year-old female artist in the Philippines. Shops on Shopee for art supplies, stickers, and affordable fashion. Very budget-conscious — sorts by price low-to-high and uses free shipping filters. Makes decisions primarily based on product photos and sold count. Rarely reads text descriptions longer than 2 lines. Shops on mobile during commute. Responds strongly to bundle deals like 'buy 3 get 1 free'. Gets overwhelmed by filter-heavy interfaces."
+  },
+  {
+    "persona_id": "B-08",
+    "persona_type": "biographical",
+    "description": "57-year-old male developer in the United Kingdom. Retired early, now buys electronics, books, and woodworking tools on Amazon UK. Impulse buyer for items under £30 but researches extensively for larger purchases. Uses Prime and expects next-day delivery as standard. Technically savvy but prefers desktop for shopping — uses multiple tabs to compare. Annoyed by popup newsletter signups. Trusts products recommended in specialist forums over Amazon's algorithm."
+  },
+  {
+    "persona_id": "B-09",
+    "persona_type": "biographical",
+    "description": "32-year-old female accountant in Germany. Methodical deal-hunter who uses Idealo price comparison before every purchase on Amazon.de. Shops for home organization items, office supplies, and children's clothing. Creates wishlists and waits for price drops. Reads the most critical reviews (2-3 stars) to assess realistic quality. Prefers product pages with clear return policies displayed prominently. Avoids marketplace sellers without German warehouse."
+  },
+  {
+    "persona_id": "B-10",
+    "persona_type": "biographical",
+    "description": "30-year-old female writer in Indonesia. Shops on Tokopedia and Shopee for books, stationery, and skincare. Brand-loyal to specific skincare lines and repurchases monthly. Influenced by beauty vlogger recommendations on YouTube Indonesia. Values product authenticity guarantees — only buys from Official Store badges. Reads long-form product descriptions for skincare ingredients. Prefers soft, aesthetic product page designs over aggressive sale layouts."
+  },
+  {
+    "persona_id": "B-11",
+    "persona_type": "biographical",
+    "description": "42-year-old male mature student in Vietnam. Returned to university for an MBA while working part-time. Shops on Shopee for study materials, coffee, and affordable electronics. Quality-focused but on a tight budget — looks for the best value rather than the cheapest price. Compares reviews across Shopee and Tiki before deciding. Uses laptop for shopping at home, phone only for quick reorders. Trusts seller response rate as a quality indicator."
+  },
+  {
+    "persona_id": "B-12",
+    "persona_type": "biographical",
+    "description": "18-year-old non-binary engineering student in the United States. First-generation college student, very eco-conscious. Shops on Depop for secondhand clothing and Amazon for school supplies. Avoids fast fashion brands on principle. Researches company sustainability practices before purchasing. Limited budget from part-time campus job. Prefers simple checkout flows — abandons cart if forced to create account. Influenced by TikTok sustainability creators."
+  },
+  {
+    "persona_id": "B-13",
+    "persona_type": "biographical",
+    "description": "20-year-old male teacher trainee in Malaysia. Shops on Shopee for teaching materials, modest fashion, and gadgets during payday sales. Very price-sensitive — compares prices down to the ringgit. Uses Shopee Coins and vouchers religiously. Makes decisions based on the main product image and price — rarely reads descriptions. Prefers Malay-language interfaces. Finds complex filtering systems confusing and usually just scrolls through default results."
+  },
+  {
+    "persona_id": "B-14",
+    "persona_type": "biographical",
+    "description": "31-year-old male designer in Italy. Shops on Amazon Italy and specialty design stores for furniture, lighting, and fashion. Impulse buyer attracted to aesthetically striking product photography. Willing to pay premium for Italian and European brands. Scrolls product images extensively before reading any text. Dislikes cluttered product pages with multiple competing CTAs. Values product detail shots — stitching, material texture, packaging — over staged lifestyle photos."
+  },
+  {
+    "persona_id": "B-15",
+    "persona_type": "biographical",
+    "description": "30-year-old female manager in Spain. Shops on Amazon Spain and El Corte Inglés online for home goods, fashion, and kids' items. Strategic deal-hunter who tracks Black Friday, Prime Day, and Rebajas sales. Uses price alert apps. Reads 10-15 reviews before any purchase over €20. Prefers product pages with comparison tables showing different models side by side. Values clear delivery date estimates over free shipping promises."
+  },
+  {
+    "persona_id": "B-16",
+    "persona_type": "biographical",
+    "description": "29-year-old male nurse in Japan. Shops on Amazon Japan and Rakuten for health supplements, running shoes, and bento supplies. Brand-loyal to specific Japanese brands — rarely tries foreign alternatives. Values neat, organized product pages with proper Japanese localization. Annoyed by machine-translated product descriptions from Chinese sellers. Checks 'Amazon's Choice' and bestseller rankings as primary quality signals. Prefers konbini pickup over home delivery."
+  },
+  {
+    "persona_id": "B-17",
+    "persona_type": "biographical",
+    "description": "29-year-old female artist in Australia. Shops online for art supplies, handmade jewelry, and vintage homewares on Etsy and Amazon AU. Quality-focused buyer who reads artist/maker backstories on product pages. Willing to wait longer for handmade or small-batch items. Distrusts products with thousands of generic 5-star reviews. Values unique product photography over polished commercial shots. Prefers shops that show their making process."
+  },
+  {
+    "persona_id": "B-18",
+    "persona_type": "biographical",
+    "description": "64-year-old female retired developer in India. Shops on Amazon India and Flipkart for books, health monitors, and kitchen appliances. Eco-conscious — filters for energy-efficient and minimal-packaging products when possible. Technically capable but frustrated by rapidly changing app interfaces. Reads the longest, most detailed reviews. Prefers desktop with large font. Values products with clear warranty information and Indian customer service contact."
+  },
+  {
+    "persona_id": "B-19",
+    "persona_type": "biographical",
+    "description": "43-year-old male accountant in South Korea. Shops on Coupang for household essentials and office supplies with rocket delivery. Budget-conscious bulk buyer — calculates per-unit prices before purchasing multipacks. Methodical: checks price, reviews, delivery speed in that exact order. Ignores lifestyle product photos — wants to see the actual item dimensions and specifications. Dislikes subscription upsells during checkout. Loyal to Coupang due to delivery speed."
+  },
+  {
+    "persona_id": "B-20",
+    "persona_type": "biographical",
+    "description": "56-year-old female writer in Mexico. Shops on MercadoLibre and Amazon Mexico for books, home décor, and kitchen items. Impulse buyer who browses recreationally in the evenings. Makes purchase decisions based on the main product image within 5 seconds — if the photo looks cheap, she moves on immediately. Never reads product descriptions longer than 3 sentences. Prefers seller communication via WhatsApp. Values installment payment (meses sin intereses)."
+  }
+]

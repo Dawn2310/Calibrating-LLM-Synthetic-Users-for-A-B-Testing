@@ -1,0 +1,163 @@
+[
+  {
+    "test_id": "UI-01",
+    "product_context": "Purchasing a laptop on Shopee Singapore, order total ~SGD 1,200",
+    "variant_a": "Multi-section single-page checkout: delivery address form at top, then product summary with shipping options, then payment method selector (PayNow/card/COD), then voucher and Shopee Coins section, then order total with 'Place Order' button at bottom. All sections visible on one long page.",
+    "variant_b": "Step-by-step checkout with progress indicator: Step 1 shows only delivery address form; Step 2 shows only payment method selection with PayNow highlighted; Step 3 shows order confirmation with subtotal, shipping fee, discounts, and 'Place Order' button. Each step on a separate screen.",
+    "metric": "checkout_completion_intent"
+  },
+  {
+    "test_id": "UI-03",
+    "product_context": "Ordering food on GrabFood from a pizza restaurant",
+    "variant_a": "List-style menu: Domino's Pizza page showing menu category tabs at top, then vertical list of items with item names, short promotional descriptions, discounted prices with crossed-out original prices, and green add-to-cart buttons aligned right.",
+    "variant_b": "Grid-style menu: restaurant menu showing 2-column grid of item cards, each with a food photo, item name, short description, price below, and green circular add-to-cart button at bottom-right of each card.",
+    "metric": "order_intent"
+  },
+  {
+    "test_id": "UI-06",
+    "product_context": "Browsing a product on Shopee mobile app",
+    "variant_a": "Sticky bottom CTA bar: three buttons ('Chat Now', 'Add to Cart', 'Buy with Vouchers') remain fixed at the bottom of the screen at all times, even after scrolling past the product image and into the ratings section.",
+    "variant_b": "Static CTA buttons: 'Add To Cart' and 'Buy Now' buttons appear only in the product details area near the price. When the user scrolls down to reviews or related products, the buttons scroll away and are no longer visible without scrolling back up.",
+    "metric": "add_to_cart_intent"
+  },
+  {
+    "test_id": "UI-07",
+    "product_context": "Viewing a product on Tiki Vietnam e-commerce platform",
+    "variant_a": "Full trust badge display: product page shows six trust signals below the buy buttons — '100% Authentic' badge, 'Freeship' badge, '200% Refund for Fake Goods' guarantee, '30-Day Return' policy, 'Fast 2-Hour Delivery' promise, and 'Official Seller' badge with seller verification checkmark.",
+    "variant_b": "Minimal trust display: product page shows only the product title, price, rating stars, and 'Buy Now' / 'Add to Cart' buttons. No explicit trust badges, guarantees, or seller verification visible near the purchase buttons.",
+    "metric": "purchase_confidence_intent"
+  },
+  {
+    "test_id": "UI-09",
+    "product_context": "Browsing product category page on fashion e-commerce",
+    "variant_a": "Hover zoom preview: when hovering over a product card image on Lazada, an enlarged product image overlay appears showing the product in detail, with Buy Now and Add to Cart CTAs visible underneath the zoomed image.",
+    "variant_b": "Find Similar overlay: when hovering over a product card on Zalora, a 'Find Similar' button overlay appears on the product image. Clicking requires navigating to the full product page to see details — no quick preview of the current product.",
+    "metric": "product_exploration_intent"
+  },
+  {
+    "test_id": "UI-10",
+    "product_context": "Completing a booking on Booking.com for a hotel in Dubai",
+    "variant_a": "Signed-in checkout with progress steps: Booking.com checkout shows the user is signed in, displays a multi-step progress bar (Your Selection → Your Details → Final Step), guest details form pre-filled with account info, booking summary on the right, and price breakdown.",
+    "variant_b": "Quick mobile checkout with minimal steps: Lazada-style mobile checkout sheet showing discounted price, original price with discount percentage, product options (color/size), quantity selector, and a single prominent 'Buy Now' CTA — no explicit account creation required to proceed.",
+    "metric": "booking_completion_intent"
+  },
+  {
+    "test_id": "UI-11",
+    "product_context": "Comparing product images on an e-commerce fashion product page",
+    "variant_a": "White-background product gallery: Lazada product page showing a jacket photographed on a plain white background. Gallery shows product from front angle. Below: rating, sale price with large discount percentage, delivery range, return policy, size and color selectors, quantity selector, Buy Now and Add to Cart CTAs.",
+    "variant_b": "Lifestyle product gallery: same Lazada jacket product page but gallery shows a lifestyle image of someone wearing the jacket. Same layout below: product title, sale price, discount, delivery promise, return policy, color options, size options, quantity selector, Buy Now and Add to Cart CTAs.",
+    "metric": "purchase_intent"
+  },
+  {
+    "test_id": "UI-12",
+    "product_context": "Browsing headphones product page on Lazada with video content available",
+    "variant_a": "Static product gallery: Lazada product page showing a thumbnail strip of static product images for headphones — multiple angles, feature highlight slides, and product-only photography. No video content.",
+    "variant_b": "Video-first gallery: same Lazada headphones product page but gallery leads with a video thumbnail showing a play overlay icon. Remaining thumbnails show feature slides and product images. Product title, rating, brand link, sale banner, discount price, promotion chip, delivery details visible.",
+    "metric": "engagement_intent"
+  },
+  {
+    "test_id": "COPY-04",
+    "product_context": "Fitness app sending afternoon push notification to encourage workout",
+    "variant_a": "Generic motivation copy: notification reads 'Are you ready to do some exercises? Today is a new day! Tap to start now' — no personalization, no reference to user's history or goals.",
+    "variant_b": "Goal-anchored copy: notification reads 'You haven't closed your Move ring today' and 'You've reached a new Move goal' — references the user's specific daily ring progress and streak status.",
+    "metric": "notification_open_intent"
+  },
+  {
+    "test_id": "COPY-05",
+    "product_context": "User considering cancelling their Netflix streaming subscription",
+    "variant_a": "Binary cancel options: account page shows two choices — 'Cancel' (to terminate subscription) and 'Return to watching' (to keep current plan). No intermediate options.",
+    "variant_b": "Pause-first retention: manage membership page shows four options — 'Change plan' (switch tier), 'Pause for a month' (temporarily suspend billing), 'Cancel' (terminate), and 'Return to watching' (keep). Pause option is visually prominent as a middle-ground alternative.",
+    "metric": "retention_intent"
+  },
+  {
+    "test_id": "COPY-06",
+    "product_context": "Product page on Shopee showing purchase action buttons",
+    "variant_a": "Dual CTA with cart emphasis: Shopee product page shows two buttons side by side — 'Add To Cart' (outlined/secondary style) and 'Buy Now' (filled/primary style). Includes product option selector and quantity picker above the buttons.",
+    "variant_b": "Single prominent CTA: product page shows only one large 'Buy Now' button (or 'Buy with Vouchers' in Shopee's case) as the primary action. 'Add to Cart' is either absent or de-emphasized as a text link.",
+    "metric": "conversion_intent"
+  },
+  {
+    "test_id": "COPY-08",
+    "product_context": "Reading product description on an e-commerce product page",
+    "variant_a": "Benefit-led bullet points: Amazon 'About this item' section showing 5-6 bullet points, each with a bold benefit heading followed by a descriptive claim. Example for sandals: comfort, use cases, arch support, grip, styling. Concise, scannable format.",
+    "variant_b": "Narrative description: Lazada/Uniqlo style product details showing flowing paragraph copy describing the product's design story, fabric technology, seasonal versatility, and styling suggestions. Reads like editorial content rather than a feature list.",
+    "metric": "purchase_confidence_intent"
+  },
+  {
+    "test_id": "COPY-09",
+    "product_context": "User submitting a form with missing required fields on Booking.com checkout",
+    "variant_a": "Technical validation errors: Booking.com checkout form showing red-highlighted required fields with validation messages like 'Please enter your first name' and 'Email address is required' after submitting incomplete input. Standard form validation style.",
+    "variant_b": "Friendly error guidance: same form errors but presented with a softer tone — 'Oops! We need your name to complete the booking' and 'We'll send your confirmation here — please add your email'. Conversational copy instead of command-style.",
+    "metric": "form_completion_intent"
+  },
+  {
+    "test_id": "COPY-10",
+    "product_context": "Viewing product price on Vietnamese e-commerce platform Tiki",
+    "variant_a": "Anchored discount display: product page shows the sale price prominently, with the original price crossed out above it and a '-X%' discount percentage badge. Makes the saving explicit and visually prominent.",
+    "variant_b": "Clean price display: product page shows only the current selling price. No crossed-out original price, no discount percentage badge. The price stands alone without anchoring.",
+    "metric": "purchase_intent"
+  },
+  {
+    "test_id": "COPY-11",
+    "product_context": "Viewing subscription pricing page on a music streaming service",
+    "variant_a": "Feature-rich pricing cards: Spotify Premium pricing page showing Individual and Student plan cards with monthly prices, benefit bullet points (ad-free listening, offline playback, etc.), 'cancel anytime' reassurance copy, and prominent CTA buttons.",
+    "variant_b": "Comparison table pricing: Netflix-style pricing page showing all tiers (Mobile, Basic, Standard, Premium) in a comparison table with rows for price, resolution, devices, simultaneous streams, downloads. 'Most Popular' badge on Standard tier.",
+    "metric": "upgrade_intent"
+  },
+  {
+    "test_id": "REC-01",
+    "product_context": "Homepage of Shopee e-commerce platform",
+    "variant_a": "Urgency-driven section: 'Flash Deals' section at top of homepage with countdown timer, discount badges showing '-50%' and '-40%', product cards with sale prices, and 'selling fast' indicators creating time pressure.",
+    "variant_b": "Personalized discovery section: 'Daily Discover' grid showing product recommendations with prices, sales count as social proof, discount badges, and product category labels. No countdown timer, no urgency signals.",
+    "metric": "click_intent"
+  },
+  {
+    "test_id": "REC-02",
+    "product_context": "Search results page for 'laptop' on Shopee",
+    "variant_a": "Price-based sort default: search results sorted by 'Price: Low to High', showing cheapest products first. Sort dropdown visible at top showing the selected option.",
+    "variant_b": "Relevance sort default: search results sorted by 'Best Match' (platform algorithm), showing products ranked by a combination of relevance, popularity, and seller quality. Sort dropdown visible at top.",
+    "metric": "engagement_intent"
+  },
+  {
+    "test_id": "REC-03",
+    "product_context": "Filter sidebar on e-commerce search results page",
+    "variant_a": "Fully expanded filter panel: Amazon-style left sidebar showing all filter categories expanded — customer reviews, brand checkboxes, price range slider, deals and discounts, color options, features, condition, power source, and connectivity. All visible without clicking 'See more'.",
+    "variant_b": "Collapsed progressive disclosure: Amazon-style left sidebar showing only 'Popular shopping ideas' summary with a 'See more' control. User must click to reveal full filter options. Reduces initial visual complexity.",
+    "metric": "filter_usage_intent"
+  },
+  {
+    "test_id": "REC-04",
+    "product_context": "Product cards on search results grid",
+    "variant_a": "Full social proof card: Shopee product card showing product image, title, price range, discount badge, star rating (4.9/5), ratings count, and '10K+ sold' as social proof. Multiple trust signals per card.",
+    "variant_b": "Minimal card: Tiki product card showing product image, price, star rating, and sold count — no discount badge, no detailed ratings breakdown. Cleaner layout with fewer signals per card.",
+    "metric": "click_through_intent"
+  },
+  {
+    "test_id": "REC-06",
+    "product_context": "Recommendation layout on streaming/media platform homepage",
+    "variant_a": "Horizontal carousel rows: Netflix dark-mode homepage showing multiple horizontal recommendation carousels — 'Watch-Party Picks', 'Top Searches', 'Today's Top Picks for You'. Each row is a horizontal scrollable strip of content cards.",
+    "variant_b": "Personalized grid: Spotify dark-mode desktop app showing a grid layout with 'Made For You' section, Daily Mix playlists, Discover Weekly, and recent listening. Cards arranged in a 2D grid rather than horizontal rows.",
+    "metric": "content_exploration_intent"
+  },
+  {
+    "test_id": "REC-07",
+    "product_context": "Urgency and scarcity signals on hotel booking platform",
+    "variant_a": "Heavy urgency signals: Booking.com room options showing 'We have 7 left', 'Limited-time Deal', '30% off' badge, crossed-out original price with current lower price, and 'Reserve' CTA. Multiple scarcity and time-pressure signals stacked.",
+    "variant_b": "Social proof signals: Booking.com property showing 'Still interested?' section with recently viewed properties, review rating with overall score and review count, and category ratings (Staff, etc.). Encourages return through familiarity rather than pressure.",
+    "metric": "booking_urgency_intent"
+  },
+  {
+    "test_id": "REC-08",
+    "product_context": "Cross-sell recommendations on product page",
+    "variant_a": "Bundle upsell: Amazon 'Frequently Bought Together' module showing three items bundled with selected checkboxes, a combined total price, and a single 'Add all 3 to Cart' CTA. Encourages buying complementary products as a set.",
+    "variant_b": "Individual recommendations: Shopee 'From the Same Shop' and 'You May Also Like' sections showing individual product cards with images, prices, ratings, sold counts, and discount badges. Each item is independent — no bundling.",
+    "metric": "additional_purchase_intent"
+  },
+  {
+    "test_id": "REC-11",
+    "product_context": "Re-engagement signals for previously viewed hotels on Booking.com",
+    "variant_a": "Price-drop signal: hotel result cards showing crossed-out original prices with lower current prices and 'Getaway Deal' labels. Emphasizes that waiting paid off — prices went down.",
+    "variant_b": "Recently-viewed reminder: 'Still interested?' section showing previously viewed properties and recent searches. Emphasizes familiarity and continuity rather than price change.",
+    "metric": "return_booking_intent"
+  }
+]
