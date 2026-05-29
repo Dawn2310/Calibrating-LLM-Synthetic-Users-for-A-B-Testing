@@ -1,0 +1,72 @@
+[
+  {
+    "test_id": "UI-09-V2",
+    "product_context": "Browsing product category page on fashion e-commerce",
+    "variant_a": "Hovering over a product image shows a zoomed preview and purchase buttons.",
+    "variant_b": "Hovering over a product image shows a 'Find Similar' button without zooming.",
+    "metric": "product_exploration_intent"
+  },
+  {
+    "test_id": "UI-09-V3",
+    "product_context": "Browsing product category page on fashion e-commerce",
+    "variant_a": "When a user browses the fashion category on Lazada and hovers their cursor over a specific product card, an interactive overlay is triggered. The product image dynamically zooms in, providing a detailed, high-resolution preview of the fabric and design without requiring the user to leave the current page. Directly beneath this magnified view, two prominent call-to-action buttons, 'Buy Now' and 'Add to Cart', appear instantly, allowing for rapid purchasing decisions directly from the category feed.",
+    "variant_b": "When a user browses the fashion category on Zalora and hovers their cursor over a product card, the image remains static without any zooming effect. Instead, a semi-transparent overlay appears containing a single 'Find Similar' button. This feature is designed to help users discover related fashion items, but it does not offer a quick preview of the current item's details. To see more information or to purchase the item, the user is required to click through and navigate entirely to the dedicated product detail page.",
+    "metric": "product_exploration_intent"
+  },
+  {
+    "test_id": "COPY-04-V2",
+    "product_context": "Fitness app sending afternoon push notification to encourage workout",
+    "variant_a": "Generic notification: 'Are you ready to do some exercises? Tap to start now'.",
+    "variant_b": "Personalized notification: 'You haven't closed your Move ring today'.",
+    "metric": "notification_open_intent"
+  },
+  {
+    "test_id": "COPY-04-V3",
+    "product_context": "Fitness app sending afternoon push notification to encourage workout",
+    "variant_a": "The fitness application delivers an afternoon push notification featuring generic motivational copywriting. The message displays: 'Are you ready to do some exercises? Today is a new day! Tap to start now.' This variant employs a generalized, positive tone but lacks any specific personalization. It makes no reference to the user's past workout history, current daily progress, or long-term fitness goals, relying entirely on intrinsic motivation to prompt the user to open the app.",
+    "variant_b": "The fitness application delivers an afternoon push notification featuring highly personalized, goal-anchored copywriting. The message directly addresses the user's current status, displaying: 'You haven't closed your Move ring today' followed by 'You've reached a new Move goal.' By explicitly referencing the user's specific daily activity metrics and ongoing streak status, this variant creates a sense of immediate relevance and utilizes behavioral loss aversion (not breaking a streak) to encourage the user to open the app and complete their workout.",
+    "metric": "notification_open_intent"
+  },
+  {
+    "test_id": "REC-06-V2",
+    "product_context": "Recommendation layout on streaming/media platform homepage",
+    "variant_a": "Homepage features multiple horizontally scrolling carousels for different content categories.",
+    "variant_b": "Homepage features a 2D grid layout grouping personalized content into sections.",
+    "metric": "content_exploration_intent"
+  },
+  {
+    "test_id": "REC-06-V3",
+    "product_context": "Recommendation layout on streaming/media platform homepage",
+    "variant_a": "The streaming platform's homepage utilizes a dark-mode interface centered around multiple horizontal recommendation carousels, similar to Netflix. Content is categorized into distinct, themed rows such as 'Watch-Party Picks', 'Top Searches', and 'Today's Top Picks for You'. Users explore the catalog by vertically scrolling down the page to see different categories, and horizontally scrolling within each specific strip to reveal more content cards. This layout allows for high categorization density but limits the number of items visible per category without user interaction.",
+    "variant_b": "The streaming platform's homepage utilizes a dark-mode interface centered around a comprehensive 2D grid layout, reminiscent of the Spotify desktop application. The interface prominently features a 'Made For You' section, alongside Daily Mix playlists, Discover Weekly recommendations, and recently accessed content. Instead of hiding items in scrollable rows, the content cards are arranged in a static grid, allowing users to scan multiple personalized recommendations simultaneously. This layout prioritizes immediate visual access to a broader, albeit less categorized, selection of content.",
+    "metric": "content_exploration_intent"
+  },
+  {
+    "test_id": "UI-01-V2",
+    "product_context": "Purchasing a laptop on Shopee Singapore, order total ~SGD 1,200",
+    "variant_a": "Single-page checkout showing address, shipping, payment, and order summary all at once.",
+    "variant_b": "Multi-step checkout where address, payment, and confirmation are on separate consecutive screens.",
+    "metric": "checkout_completion_intent"
+  },
+  {
+    "test_id": "UI-01-V3",
+    "product_context": "Purchasing a laptop on Shopee Singapore, order total ~SGD 1,200",
+    "variant_a": "A comprehensive, multi-section single-page checkout experience on an e-commerce platform. The interface presents all required purchasing steps sequentially on one continuous scrolling page. It begins with the delivery address form at the top, followed seamlessly by a product summary detailing the items and available shipping options. Below this, users find a payment method selector offering options like PayNow, credit card, and Cash on Delivery. Finally, a voucher input section leads into the final order total and the primary 'Place Order' button at the bottom. The user can review and edit all information simultaneously.",
+    "variant_b": "A guided, step-by-step checkout experience featuring a clear progress indicator at the top of the interface. The purchasing process is broken down into isolated, sequential screens to reduce cognitive load. Step 1 focuses exclusively on capturing the delivery address. Upon continuation, Step 2 displays only the payment method selection, with preferred options visually highlighted. Finally, Step 3 presents a dedicated order confirmation screen summarizing the subtotal, shipping fees, applied discounts, and the final 'Place Order' button. Users must complete each screen before proceeding to the next.",
+    "metric": "checkout_completion_intent"
+  },
+  {
+    "test_id": "REC-03-V2",
+    "product_context": "Filter sidebar on e-commerce search results page",
+    "variant_a": "Left sidebar shows all filter categories (brand, price, color) fully expanded by default.",
+    "variant_b": "Left sidebar shows only a summary, requiring users to click 'See more' to reveal filters.",
+    "metric": "filter_usage_intent"
+  },
+  {
+    "test_id": "REC-03-V3",
+    "product_context": "Filter sidebar on e-commerce search results page",
+    "variant_a": "The e-commerce search results page features a comprehensive, fully expanded filter panel located in the left sidebar. By default, every available filtering category is immediately visible and accessible without requiring any additional user interaction. This includes sections for customer review ratings, extensive brand checkboxes, a dynamic price range slider, specific deal and discount toggles, color swatches, product features, item condition, power source, and connectivity options. While this provides immediate access to all refinement tools, it results in a very long, dense column of information.",
+    "variant_b": "The e-commerce search results page features a left sidebar filter panel utilizing progressive disclosure principles. By default, the panel is heavily collapsed to reduce initial visual complexity and cognitive overload. It displays only a curated 'Popular shopping ideas' summary and perhaps the most critical filter. To access the comprehensive suite of filtering tools—such as brand, price, color, and specific features—the user must actively engage by clicking a 'See more' control to expand the full list of options.",
+    "metric": "filter_usage_intent"
+  }
+]

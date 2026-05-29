@@ -23,7 +23,7 @@ def init_db():
         persona_id TEXT NOT NULL,
         persona_type TEXT NOT NULL CHECK(persona_type IN ('demographic','biographical','interview')),
         model TEXT NOT NULL CHECK(model IN ('gpt-4o','claude-3.5-sonnet','llama-3.3-70b','deepseek-v4-flash')),
-        run_number INTEGER NOT NULL CHECK(run_number IN (1, 2, 3)),
+        run_number INTEGER NOT NULL CHECK(run_number BETWEEN 1 AND 9),
         ab_order TEXT NOT NULL CHECK(ab_order IN ('original','swapped','random')),
         raw_response TEXT,
         parsed_choice TEXT CHECK(parsed_choice IN ('A','B','INVALID')),

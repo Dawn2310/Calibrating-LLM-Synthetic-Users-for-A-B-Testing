@@ -1,6 +1,6 @@
 """
 Experiment pipeline for cross-model A/B testing.
-Handles GPT-4o, Claude 3.5 Sonnet, Llama 3.3 70B.
+Handles GPT-4o, Claude 3.5 Sonnet, Llama 3.3 70B, DeepSeek-V4-Flash.
 Features: async calls, rate limiting, exponential backoff, SQLite checkpoint.
 """
 import asyncio
@@ -169,15 +169,16 @@ async def call_deepseek(session: aiohttp.ClientSession, system: str, user: str):
             {"role": "system", "content": system},
             {"role": "user", "content": user}
         ],
-        "response_format": {"type": "json_object"},
         "temperature": 0.7,
-        "max_tokens": 20
+        "max_tokens": 512
     }
     async with session.post(url, headers=headers, json=payload) as resp:
         data = await resp.json()
         if 'error' in data:
             raise Exception(str(data['error']))
-        content = data['choices'][0]['message']['content']
+        content = data['choices'][0]['message'].get('content', '')
+        if not content.strip():
+            raise Exception("DeepSeek returned empty content")
         usage = data.get('usage', {})
         await asyncio.sleep(1.0)
         return content, usage.get('prompt_tokens', 0), usage.get('completion_tokens', 0)
@@ -222,48 +223,22 @@ def parse_choice(raw_response: str, ab_order: str) -> str:
 
 
 # ============ CHECKPOINT ============
+# Database schema is defined in init_db.py — import and reuse it.
+from init_db import init_db as _init_db_full
 
 def init_db(db_path: str):
-    """Initialize SQLite database and create table if it doesn't exist."""
-    os.makedirs(os.path.dirname(db_path), exist_ok=True)
-    conn = sqlite3.connect(db_path)
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS api_calls (
-            test_id TEXT,
-            persona_id TEXT,
-            persona_type TEXT,
-            model TEXT,
-            run_number INTEGER,
-            ab_order TEXT,
-            raw_response TEXT,
-            parsed_choice TEXT,
-            prompt_tokens INTEGER,
-            completion_tokens INTEGER,
-            response_time_ms INTEGER,
-            status TEXT,
-            error_message TEXT,
-            PRIMARY KEY (test_id, persona_id, model, run_number, ab_order)
-        )
-    ''')
-    conn.commit()
-    conn.close()
+    """Initialize SQLite database using the canonical schema from init_db.py."""
+    _init_db_full()
 
 def is_completed(db_path: str, test_id: str, persona_id: str,
                  model: str, run_number: int, ab_order: str) -> bool:
     """Check if this cell is already completed in SQLite."""
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    if run_number == 3:
-        c.execute('''
-            SELECT status FROM api_calls
-            WHERE test_id=? AND persona_id=? AND model=? AND run_number=?
-        ''', (test_id, persona_id, model, run_number))
-    else:
-        c.execute('''
-            SELECT status FROM api_calls
-            WHERE test_id=? AND persona_id=? AND model=? AND run_number=? AND ab_order=?
-        ''', (test_id, persona_id, model, run_number, ab_order))
+    c.execute('''
+        SELECT status FROM api_calls
+        WHERE test_id=? AND persona_id=? AND model=? AND run_number=? AND ab_order=?
+    ''', (test_id, persona_id, model, run_number, ab_order))
     row = c.fetchone()
     conn.close()
     return row is not None and row[0] == 'completed'
@@ -464,8 +439,12 @@ async def run_batch(test_cases: list, personas: list, models: list,
                     runs: list = [1, 2, 3]):
     """Run full experiment batch with progress tracking."""
 
-    # Map run numbers to ab_order
-    run_orders = {1: 'original', 2: 'swapped', 3: 'random'}
+    # Map run numbers to ab_order (cycling pattern for runs 4-9)
+    run_orders = {
+        1: 'original', 2: 'swapped', 3: 'random',
+        4: 'original', 5: 'swapped', 6: 'random',
+        7: 'original', 8: 'swapped', 9: 'random',
+    }
 
     total = len(test_cases) * len(personas) * len(models) * len(runs)
     completed = 0
@@ -500,19 +479,27 @@ def main():
     """Load data and run experiment."""
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--phase', choices=['pilot', 'position_bias', 'b3', 'b4', 'b5', 'full'],
+    parser.add_argument('--phase', choices=['pilot', 'position_bias', 'b3', 'b4', 'b5', 'full', 'exp4', 'exp5'],
                        required=True)
     parser.add_argument('--test-cases', default=os.path.join(BASE_DIR, 'ab_tests', 'corpus_candidates.json'))
     parser.add_argument('--personas', default=os.path.join(BASE_DIR, 'personas'))
     args = parser.parse_args()
 
     # Load test cases
-    with open(args.test_cases) as f:
-        test_cases = json.load(f)
+    if args.phase == 'exp4':
+        with open(os.path.join(os.path.dirname(args.test_cases), 'corpus_exp4.json')) as f:
+            test_cases = json.load(f)
+    else:
+        with open(args.test_cases) as f:
+            test_cases = json.load(f)
+            
+    if args.phase == 'exp5':
+        selected_tests = ['UI-09', 'COPY-04', 'REC-06', 'UI-01', 'REC-03']
+        test_cases = [tc for tc in test_cases if tc['test_id'] in selected_tests]
 
     # Load personas based on phase
     personas = []
-    if args.phase in ('pilot', 'full'):
+    if args.phase in ('pilot', 'full', 'exp4', 'exp5'):
         for ptype in ('demographic', 'biographical', 'interview'):
             path = os.path.join(args.personas, f'{ptype}.json')
             if os.path.exists(path):
@@ -536,6 +523,8 @@ def main():
         test_cases = test_cases[:1]
         personas = personas[:1]
         runs = [1]
+    elif args.phase == 'exp5':
+        runs = [4, 5, 6, 7, 8, 9]
 
     init_db(DB_PATH)
 
