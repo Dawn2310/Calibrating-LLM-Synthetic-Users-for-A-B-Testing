@@ -217,11 +217,11 @@ Each A/B comparison is run under three order conditions:
 If you use CSUP in your research, please cite:
 
 ```
-@inproceedings{csup2026,
-  title     = {From Synthetic Users to Calibrated Instruments: Decomposing Uncertainty in LLM-Based A/B Testing},
-  author    = {Anonymous},
-  booktitle = {HCOMP 2026},
-  year      = {2026}
+@misc{csup2026,
+  title  = {From Synthetic Users to Calibrated Instruments: Decomposing Uncertainty in LLM-Based A/B Testing},
+  author = {Anonymous},
+  year   = {2026},
+  note   = {Manuscript under review}
 }
 ```
 
@@ -229,4 +229,5 @@ If you use CSUP in your research, please cite:
 
 ## License
 
-MIT
+Code in this repository is released under the MIT License.  
+Datasets, prompts, model outputs, and third-party platform screenshots are provided for research and reproducibility purposes only and may be subject to their original terms of use.
