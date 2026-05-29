@@ -1,0 +1,20 @@
+                   Mixed Linear Model Regression Results
+===========================================================================
+Model:                  MixedLM       Dependent Variable:       choice_A   
+No. Observations:       32028         Method:                   REML       
+No. Groups:             33            Scale:                    0.1503     
+Min. group size:        720           Log-Likelihood:           -15225.7063
+Max. group size:        2373          Converged:                Yes        
+Mean group size:        970.5                                              
+---------------------------------------------------------------------------
+                                Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------
+Intercept                        0.633    0.051  12.327 0.000  0.533  0.734
+C(model)[T.deepseek-v4-flash]   -0.031    0.006  -4.979 0.000 -0.043 -0.019
+C(model)[T.gpt-4o]              -0.043    0.006  -6.999 0.000 -0.055 -0.031
+C(model)[T.llama-3.3-70b]       -0.074    0.006 -12.091 0.000 -0.086 -0.062
+C(persona_type)[T.biographical] -0.078    0.005 -14.633 0.000 -0.088 -0.067
+C(persona_type)[T.interview]    -0.054    0.005 -10.096 0.000 -0.064 -0.043
+C(ab_order)[T.swapped]          -0.063    0.004 -14.543 0.000 -0.072 -0.055
+Group Var                        0.086    0.055                            
+===========================================================================
