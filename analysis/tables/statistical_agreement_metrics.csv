@@ -1,9 +1,0 @@
-Metric,Comparison,Value
-Cohen's Kappa,claude-3.5-sonnet vs deepseek-v4-flash,0.6070240991917379
-Cohen's Kappa,claude-3.5-sonnet vs gpt-4o,0.6729223066951666
-Cohen's Kappa,claude-3.5-sonnet vs llama-3.3-70b,0.6336026486724399
-Cohen's Kappa,deepseek-v4-flash vs gpt-4o,0.6005426323980987
-Cohen's Kappa,deepseek-v4-flash vs llama-3.3-70b,0.5844317775740449
-Cohen's Kappa,gpt-4o vs llama-3.3-70b,0.7000405500569864
-Fleiss' Kappa,All Models,0.6329314093000457
-Krippendorff's Alpha,All Models,0.6329626544984344
