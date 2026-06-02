@@ -64,3 +64,5 @@ node_modules/
 website/node_modules/
 website/dist/
 .env.local
+
+website/.vite/
