@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khảo sát Sở thích Thiết kế A/B</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+  :root{
+    --ink:#1a1714; --paper:#f4efe6; --card:#fffdf8; --accent:#c2410c;
+    --accent2:#0d5c63; --line:#ddd3c2; --muted:#7a6f60;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);
+    line-height:1.55;padding:0 0 80px}
+  .wrap{max-width:780px;margin:0 auto;padding:0 24px}
+  header{background:var(--ink);color:var(--paper);padding:40px 0 34px;margin-bottom:34px;
+    border-bottom:5px solid var(--accent)}
+  header .wrap{display:block}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:34px;line-height:1.05;letter-spacing:-.01em}
+  .sub{font-size:15px;color:#cabfae;margin-top:10px;max-width:600px}
+  .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    text-transform:uppercase;letter-spacing:.12em;background:var(--accent);color:#fff;
+    padding:4px 10px;border-radius:2px;margin-bottom:16px}
+  .intro{background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:26px 28px;margin-bottom:30px}
+  .intro h2{font-family:'Fraunces',serif;font-size:20px;margin-bottom:10px}
+  .intro p{font-size:14.5px;color:var(--muted);margin-bottom:10px}
+  .field{margin:16px 0}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+  .field input,.field select{width:100%;padding:10px 12px;border:1px solid var(--line);
+    border-radius:6px;font-family:inherit;font-size:14px;background:#fff}
+  .progress{position:sticky;top:0;z-index:10;background:var(--paper);padding:14px 0;
+    border-bottom:1px solid var(--line);margin-bottom:24px}
+  .progress .bar{height:7px;background:var(--line);border-radius:99px;overflow:hidden}
+  .progress .fill{height:100%;background:var(--accent);width:0;transition:width .3s}
+  .progress .txt{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+    margin-top:6px;text-transform:uppercase;letter-spacing:.1em}
+  .scenario{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:26px;margin-bottom:22px;display:none}
+  .scenario.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .scen-head{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
+  .scen-domain{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent2);font-weight:500}
+  .scen-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)}
+  .scen-ctx{font-size:15px;margin-bottom:6px}
+  .scen-q{font-size:13.5px;color:var(--muted);margin-bottom:20px;font-style:italic}
+  .opts{display:grid;gap:14px}
+  .opt{border:2px solid var(--line);border-radius:9px;padding:18px 20px;cursor:pointer;
+    transition:all .18s;background:#fff;position:relative}
+  .opt:hover{border-color:var(--accent2);transform:translateX(3px)}
+  .opt.sel{border-color:var(--accent);background:#fff6f0;box-shadow:0 3px 0 var(--accent)}
+  .opt .tag{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;
+    color:var(--accent2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;display:block}
+  .opt.sel .tag{color:var(--accent)}
+  .opt .body{font-size:14px;line-height:1.5}
+  .nav{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
+  button{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;
+    padding:12px 26px;border:none;border-radius:7px;cursor:pointer;transition:all .18s}
+  .btn-prev{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-prev:hover{border-color:var(--ink);color:var(--ink)}
+  .btn-next{background:var(--ink);color:var(--paper)}
+  .btn-next:hover{background:var(--accent)}
+  .btn-next:disabled{opacity:.4;cursor:not-allowed}
+  .btn-start{background:var(--accent);color:#fff;width:100%;padding:15px;font-size:15px;margin-top:8px}
+  .done{text-align:center;padding:50px 20px;display:none}
+  .done.active{display:block}
+  .done h2{font-family:'Fraunces',serif;font-size:30px;margin-bottom:14px}
+  .done .code{font-family:'IBM Plex Mono',monospace;font-size:22px;background:var(--ink);
+    color:var(--paper);padding:14px 24px;border-radius:8px;display:inline-block;margin:18px 0;letter-spacing:.1em}
+  .err{color:var(--accent);font-size:13px;margin-top:8px;min-height:18px}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="pill">Nghiên cứu khoa học &middot; ~6 phút</span>
+  <h1>Thiết kế nào khiến bạn dễ hành động hơn?</h1>
+  <p class="sub">Bạn sẽ thấy 23 cặp thiết kế giao diện thương mại điện tử thực tế. Với mỗi cặp, hãy chọn phương án mà bạn thấy thuyết phục hơn. Không có câu trả lời đúng hay sai &mdash; chúng tôi muốn biết sở thích thực tế của bạn.</p>
+</div></header>
+
+<div class="wrap">
+
+  <!-- INTRO / CONSENT -->
+  <section id="intro" class="intro">
+    <h2>Trước khi bắt đầu</h2>
+    <p>Nghiên cứu này so sánh cách con người và mô hình AI đánh giá các thử nghiệm A/B. Câu trả lời của bạn là ẩn danh và chỉ sử dụng cho nghiên cứu tổng hợp. Tham gia là tự nguyện; bạn có thể dừng lại bất kỳ lúc nào bằng cách đóng tab.</p>
+    <p>Vui lòng trả lời dựa trên <strong>sở thích cá nhân của bạn với tư cách là người mua sắm/người dùng</strong>, không phải những gì bạn nghĩ là "đúng".</p>
+    <div class="field">
+      <label>Mã người tham gia (tên bất kỳ hoặc để trống để tạo tự động)</label>
+      <input id="pid" placeholder="e.g. rater_07">
+    </div>
+    <div class="field">
+      <label>Nhóm tuổi</label>
+      <select id="age"><option value="">Chọn…</option><option>18-24</option><option>25-34</option><option>35-44</option><option>45-54</option><option>55+</option></select>
+    </div>
+    <div class="field">
+      <label>Tần suất bạn mua sắm trực tuyến?</label>
+      <select id="freq"><option value="">Chọn…</option><option value="Weekly+">Hàng tuần+</option><option value="Monthly">Hàng tháng</option><option value="Rarely">Hiếm khi</option></select>
+    </div>
+    <button class="btn-start" onclick="start()">Bắt đầu khảo sát →</button>
+    <div class="err" id="introErr"></div>
+  </section>
+
+  <!-- PROGRESS -->
+  <div id="progress" class="progress hidden">
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="txt" id="ptxt">Câu hỏi 1 / 23</div>
+  </div>
+
+  <!-- SCENARIOS MOUNT -->
+  <div id="scenarios"></div>
+
+  <!-- DONE -->
+  <section id="done" class="done">
+    <h2>Cảm ơn bạn! 🎉</h2>
+    <p>Ý kiến của bạn đã được ghi lại và lưu vào hệ thống.</p>
+    <div class="code" id="ccode">—</div>
+    <p style="color:var(--muted);font-size:14px">Bây giờ bạn có thể đóng tab này.</p>
+  </section>
+
+</div>
+
+<script>
+const SCENARIOS = [{"id": "UI-01", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang mua laptop trực tuyến (tổng ~$900). Bạn đến trang thanh toán.", "metric": "checkout completion intent", "opt1": "Thanh toán từng bước: Thanh tiến trình hiển thị 3 bước. Bước 1: chỉ địa chỉ giao hàng. Bước 2: chỉ phương thức thanh toán. Bước 3: xác nhận đơn hàng với tổng tiền. Mỗi bước trên một màn hình riêng.", "opt2": "Thanh toán một trang: Tất cả hiển thị trên một trang dài — địa chỉ giao hàng ở trên, sau đó tóm tắt sản phẩm, vận chuyển, phương thức thanh toán, mã giảm giá, và nút 'Đặt hàng' ở cuối.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.565, "tier": "Low", "model_pa": 0.686, "question": "Phiên bản nào khiến bạn có xu hướng hoàn tất thanh toán hơn?"}, {"id": "UI-03", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang đặt đồ ăn giao tận nơi từ một nhà hàng pizza.", "metric": "order intent", "opt1": "Menu dạng lưới: Lưới 2 cột gồm các thẻ món, mỗi thẻ có ảnh món ăn, tên, mô tả ngắn, giá, và nút 'Thêm' hình tròn.", "opt2": "Menu dạng danh sách: Danh sách dọc hiển thị tên món, mô tả ngắn, giá giảm với giá gốc gạch ngang, và nút 'Thêm' bên phải.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.698, "tier": "Moderate", "model_pa": 0.497, "question": "Kiểu menu nào khiến bạn có xu hướng đặt món hơn?"}, {"id": "UI-06", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang xem một sản phẩm trên ứng dụng mua sắm trên điện thoại.", "metric": "add to cart intent", "opt1": "Thanh cố định dưới cùng: Ba nút ('Chat', 'Thêm vào giỏ', 'Mua ngay') luôn cố định ở cuối màn hình, kể cả khi bạn cuộn xuống phần đánh giá.", "opt2": "Nút tĩnh: 'Thêm vào giỏ' và 'Mua ngay' chỉ xuất hiện gần giá sản phẩm. Khi cuộn xuống đánh giá, các nút biến mất và bạn phải cuộn lên lại.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.779, "tier": "Moderate", "model_pa": 0.771, "question": "Phiên bản nào khiến bạn có xu hướng thêm sản phẩm vào giỏ hàng hơn?"}, {"id": "UI-07", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang xem sản phẩm từ người bán lạ trên sàn thương mại điện tử.", "metric": "purchase confidence intent", "opt1": "Hiển thị tối giản: Chỉ hiển thị tên sản phẩm, giá, sao đánh giá, và nút 'Mua ngay' / 'Thêm vào giỏ'. Không có huy hiệu, cam kết, hay xác minh người bán.", "opt2": "Đầy đủ huy hiệu tin cậy: Dưới nút mua, hiển thị sáu tín hiệu — 'Chính hãng 100%', 'Freeship', 'Đền 200% nếu giả', 'Đổi trả 30 ngày', 'Giao nhanh', và huy hiệu 'Nhà bán chính thức'.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.889, "tier": "High", "model_pa": 0.928, "question": "Phiên bản nào khiến bạn cảm thấy tự tin hơn để mua hàng?"}, {"id": "UI-09", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang duyệt trang danh mục thời trang với nhiều sản phẩm.", "metric": "product exploration intent", "opt1": "Phóng to khi di chuột: Khi di chuột qua ảnh sản phẩm, bản xem trước phóng to hiện ra với nút 'Mua ngay' và 'Thêm vào giỏ' bên dưới.", "opt2": "Tìm tương tự: Khi di chuột qua ảnh, nút 'Tìm sản phẩm tương tự' xuất hiện. Để xem chi tiết, bạn phải nhấn vào trang sản phẩm đầy đủ.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.814, "tier": "High", "model_pa": 0.988, "question": "Phiên bản nào khiến bạn có xu hướng khám phá sản phẩm hơn?"}, {"id": "UI-10", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang hoàn tất đặt phòng hoặc mua hàng trực tuyến.", "metric": "booking completion intent", "opt1": "Thanh toán nhanh trên mobile: Giá giảm hiển thị nổi bật, tùy chọn sản phẩm, chọn số lượng, và một nút 'Mua ngay' lớn. Không cần tạo tài khoản.", "opt2": "Thanh toán theo bước: Bạn đã đăng nhập. Thanh tiến trình hiển thị (Lựa chọn → Chi tiết → Bước cuối). Thông tin được điền sẵn. Tóm tắt và chi phí bên phải.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.71, "tier": "Moderate", "model_pa": 0.714, "question": "Cách thanh toán nào khiến bạn có xu hướng hoàn tất mua hàng hơn?"}, {"id": "UI-11", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang xem một chiếc áo khoác trên cửa hàng thời trang trực tuyến.", "metric": "purchase intent", "opt1": "Ảnh lifestyle: Cùng chiếc áo khoác nhưng có người mặc. Bố cục bên dưới giống nhau: tên, giá, giảm giá, giao hàng, chọn size/màu, nút mua.", "opt2": "Ảnh nền trắng: Áo khoác chụp trên nền trắng từ góc trước. Bên dưới: đánh giá, giá sale, phần trăm giảm, thông tin giao hàng, chọn size/màu.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.691, "tier": "Moderate", "model_pa": 0.431, "question": "Phiên bản nào khiến bạn có xu hướng mua chiếc áo khoác hơn?"}, {"id": "UI-12", "domain": "UI/UX", "context": "Hãy tưởng tượng bạn đang xem tai nghe trên trang sản phẩm thương mại điện tử.", "metric": "engagement intent", "opt1": "Thư viện ảnh tĩnh: Chỉ ảnh sản phẩm — nhiều góc chụp và hình nổi bật tính năng. Không có video.", "opt2": "Thư viện video đầu tiên: Ảnh đầu tiên là thumbnail video (có biểu tượng play). Các ảnh còn lại là ảnh sản phẩm và tính năng.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.702, "tier": "Moderate", "model_pa": 0.432, "question": "Phiên bản nào khiến bạn tương tác với sản phẩm nhiều hơn?"}, {"id": "COPY-04", "domain": "Copy/Messaging", "context": "Hãy tưởng tượng bạn dùng ứng dụng tập thể dục và nhận thông báo đẩy buổi chiều.", "metric": "notification open intent", "opt1": "Gắn mục tiêu: 'Bạn chưa hoàn thành vòng tập hôm nay' / 'Còn 1 buổi nữa là hoàn thành mục tiêu tuần.' Đề cập tiến độ cụ thể.", "opt2": "Chung chung: 'Bạn sẵn sàng tập luyện chưa? Hôm nay là một ngày mới! Nhấn để bắt đầu.' Không đề cập lịch sử tập.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.754, "tier": "Moderate", "model_pa": 0.02, "question": "Thông báo nào khiến bạn có xu hướng mở ứng dụng hơn?"}, {"id": "COPY-05", "domain": "Copy/Messaging", "context": "Hãy tưởng tượng bạn đang cân nhắc hủy thuê bao xem phim trực tuyến (như Netflix).", "metric": "retention intent", "opt1": "Có tùy chọn tạm dừng: Bốn lựa chọn — 'Đổi gói', 'Tạm dừng 1 tháng', 'Hủy', và 'Quay lại xem'. Tùy chọn tạm dừng được hiển thị nổi bật.", "opt2": "Hai lựa chọn: 'Hủy thuê bao' và 'Quay lại xem'. Không có lựa chọn trung gian.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.921, "tier": "High", "model_pa": 0.038, "question": "Phiên bản nào khiến bạn có xu hướng giữ lại thuê bao (không hủy) hơn?"}, {"id": "COPY-06", "domain": "Copy/Messaging", "context": "Hãy tưởng tượng bạn đã quyết định chọn sản phẩm và sẵn sàng hành động.", "metric": "conversion intent", "opt1": "Một nút: Chỉ một nút 'Mua ngay' lớn là hành động chính. 'Thêm vào giỏ' không có hoặc là link nhỏ.", "opt2": "Hai nút: 'Thêm vào giỏ' (viền) và 'Mua ngay' (nổi bật) cạnh nhau. Tùy chọn sản phẩm và chọn số lượng ở trên.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.8, "tier": "Moderate", "model_pa": 0.819, "question": "Phiên bản nào khiến bạn có xu hướng mua hàng hơn?"}, {"id": "COPY-08", "domain": "Copy/Messaging", "context": "Hãy tưởng tượng bạn đang đọc mô tả sản phẩm để quyết định có mua không.", "metric": "purchase confidence intent", "opt1": "Đoạn văn mô tả: Văn bản liền mạch kể về câu chuyện thiết kế, công nghệ vải, tính đa năng và gợi ý phối đồ. Đọc như bài viết biên tập.", "opt2": "Gạch đầu dòng: 5-6 điểm ngắn gọn, mỗi điểm có tiêu đề lợi ích in đậm. Ví dụ: 'Hỗ trợ vòm chân — thiết kế thoải mái cả ngày'. Dễ quét mắt.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.734, "tier": "Moderate", "model_pa": 0.817, "question": "Kiểu mô tả nào khiến bạn tự tin mua hàng hơn?"}, {"id": "COPY-09", "domain": "Copy/Messaging", "context": "Hãy tưởng tượng bạn đang điền form thanh toán và gửi khi còn thiếu thông tin.", "metric": "form completion intent", "opt1": "Lỗi thân thiện: Cùng trường thiếu nhưng giọng mềm hơn — 'Ôi! Chúng tôi cần tên bạn để hoàn tất đặt phòng' và 'Chúng tôi sẽ gửi xác nhận tại đây — vui lòng thêm email'.", "opt2": "Lỗi kỹ thuật: Các trường tô đỏ với thông báo 'Vui lòng nhập họ tên' và 'Yêu cầu nhập email'. Kiểu xác thực tiêu chuẩn.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.807, "tier": "High", "model_pa": 0.183, "question": "Kiểu thông báo lỗi nào khiến bạn có xu hướng hoàn tất form hơn?"}, {"id": "COPY-10", "domain": "Copy/Messaging", "context": "Hãy tưởng tượng bạn đang xem giá sản phẩm trên sàn thương mại điện tử.", "metric": "purchase intent", "opt1": "Giá neo giảm: Giá sale hiển thị nổi bật, giá gốc bị gạch bỏ phía trên và có huy hiệu '-X%'. Số tiền tiết kiệm được thể hiện rõ.", "opt2": "Giá sạch: Chỉ hiển thị giá bán hiện tại. Không có giá gốc gạch bỏ, không có huy hiệu giảm giá. Giá đứng một mình.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.685, "tier": "Moderate", "model_pa": 0.715, "question": "Cách hiển thị giá nào khiến bạn có xu hướng mua hàng hơn?"}, {"id": "COPY-11", "domain": "Copy/Messaging", "context": "Hãy tưởng tượng bạn đang so sánh giá thuê bao dịch vụ streaming.", "metric": "upgrade intent", "opt1": "Bảng so sánh: Tất cả gói hiển thị trong bảng so sánh với hàng cho giá, độ phân giải, thiết bị, luồng, tải xuống. Huy hiệu 'Phổ biến nhất' trên một gói.", "opt2": "Thẻ lợi ích: Thẻ từng gói hiển thị giá, danh sách lợi ích (không quảng cáo, nghe offline...), cam kết 'hủy bất kỳ lúc nào', và nút đăng ký.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.58, "tier": "Low", "model_pa": 0.439, "question": "Cách hiển thị giá nào khiến bạn có xu hướng nâng cấp lên gói trả phí hơn?"}, {"id": "REC-01", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn vào trang chủ của sàn mua sắm.", "metric": "click intent", "opt1": "Khám phá hôm nay: Lưới sản phẩm gợi ý với giá, lượt bán, huy hiệu giảm giá. Không đồng hồ đếm ngược, không gấp. Dễ duyệt.", "opt2": "Flash Sale: Đồng hồ đếm ngược, huy hiệu '-50%' và '-40%', giá sale, chỉ báo 'bán chạy'. Tạo cảm giác gấp.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.705, "tier": "Moderate", "model_pa": 0.279, "question": "Bạn có xu hướng nhấn vào phần nào hơn?"}, {"id": "REC-02", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn tìm 'laptop' trên sàn mua sắm và thấy trang kết quả.", "metric": "engagement intent", "opt1": "Sắp theo giá: Kết quả sắp xếp 'Giá: Thấp đến Cao', sản phẩm rẻ nhất lên đầu.", "opt2": "Sắp theo độ liên quan: Kết quả sắp xếp 'Phù hợp nhất', xếp hạng theo độ liên quan, phổ biến, và chất lượng người bán.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.69, "tier": "Moderate", "model_pa": 0.469, "question": "Cách sắp xếp mặc định nào khiến bạn có xu hướng tương tác với kết quả hơn?"}, {"id": "REC-03", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn đang lọc kết quả tìm kiếm bằng bảng lọc bên trái.", "metric": "filter usage intent", "opt1": "Mở rộng đầy đủ: Tất cả danh mục lọc hiển thị — đánh giá, thương hiệu, giá, khuyến mãi, màu sắc, tính năng. Không cần nhấn 'Xem thêm'.", "opt2": "Thu gọn: Chỉ hiển thị nhãn tóm tắt với nút 'Xem thêm'. Bạn phải nhấn để hiện đầy đủ tùy chọn lọc.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.723, "tier": "Moderate", "model_pa": 0.817, "question": "Bố cục bộ lọc nào khiến bạn có xu hướng sử dụng bộ lọc hơn?"}, {"id": "REC-04", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn đang quét các thẻ sản phẩm trong kết quả tìm kiếm.", "metric": "click through intent", "opt1": "Đầy đủ bằng chứng xã hội: Ảnh, tên, giá, huy hiệu giảm giá, sao (4.9/5), số đánh giá, và 'Đã bán 10K+'. Nhiều tín hiệu trên mỗi thẻ.", "opt2": "Thẻ tối giản: Ảnh, giá, sao đánh giá, và lượt bán. Không huy hiệu giảm giá, không chi tiết đánh giá. Bố cục sạch hơn.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.753, "tier": "Moderate", "model_pa": 0.771, "question": "Thẻ sản phẩm nào khiến bạn có xu hướng nhấn vào sản phẩm hơn?"}, {"id": "REC-06", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn mở trang chủ nền tảng streaming để tìm nội dung xem hoặc nghe.", "metric": "content exploration intent", "opt1": "Bố cục lưới: Phần 'Dành cho bạn' với playlist/nội dung sắp xếp lưới 2D. Mix hàng ngày, gợi ý, lịch sử gần đây đều hiển thị cùng lúc.", "opt2": "Carousel ngang: Nhiều hàng, mỗi hàng là dải nội dung cuộn ngang — 'Chọn lọc cho bạn', 'Thịnh hành', 'Xem cùng bạn bè'.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.635, "tier": "Moderate", "model_pa": 0.242, "question": "Bố cục nào khiến bạn có xu hướng khám phá nội dung hơn?"}, {"id": "REC-07", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn đang so sánh phòng khách sạn trên nền tảng đặt phòng.", "metric": "booking urgency intent", "opt1": "Tín hiệu gấp: 'Còn 7 phòng', 'Ưu đãi có hạn', huy hiệu 'Giảm 30%', giá gốc gạch bỏ. Nhiều tín hiệu khan hiếm chồng lên nhau.", "opt2": "Bằng chứng xã hội: Phần 'Vẫn quan tâm?' với khách sạn đã xem trước đó, điểm đánh giá, đánh giá theo hạng mục (Nhân viên, Sạch sẽ...). Quen thuộc thay vì áp lực.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.733, "tier": "Moderate", "model_pa": 0.497, "question": "Phiên bản nào khiến bạn có xu hướng đặt phòng hơn?"}, {"id": "REC-08", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn vừa xem một sản phẩm và thấy gợi ý bên dưới.", "metric": "additional purchase intent", "opt1": "Gợi ý riêng lẻ: 'Bạn cũng có thể thích' với thẻ sản phẩm riêng — mỗi thẻ có ảnh, giá, đánh giá, lượt bán. Không gộp bộ.", "opt2": "Gợi ý theo bộ: 'Thường mua cùng' — 3 sản phẩm gộp với checkbox, tổng giá kết hợp, và nút 'Thêm cả 3 vào giỏ'.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.722, "tier": "Moderate", "model_pa": 0.317, "question": "Kiểu gợi ý nào khiến bạn có xu hướng mua thêm sản phẩm hơn?"}, {"id": "REC-11", "domain": "Recommendation", "context": "Hãy tưởng tượng bạn đã tìm khách sạn trước đó và quay lại nền tảng đặt phòng.", "metric": "return booking intent", "opt1": "Tín hiệu giảm giá: Khách sạn bạn đã xem giờ hiển thị giá cũ gạch bỏ với giá mới thấp hơn và nhãn 'Ưu đãi đặc biệt'.", "opt2": "Nhắc nhở đã xem: Phần 'Vẫn quan tâm?' hiển thị khách sạn bạn đã xem và tìm kiếm gần đây. Không nêu bật thay đổi giá.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.742, "tier": "Moderate", "model_pa": 0.79, "question": "Phiên bản nào khiến bạn có xu hướng đặt phòng hơn?"}];
+let answers = {}, idx = 0, pid = '', submitting = false;
+
+function start(){
+  const age=document.getElementById('age').value;
+  const freq=document.getElementById('freq').value;
+  if(!age||!freq){document.getElementById('introErr').textContent='Vui lòng điền đầy đủ tuổi và tần suất mua sắm.';return;}
+  pid = document.getElementById('pid').value.trim() || ('rater_'+Math.random().toString(36).slice(2,8));
+  answers = {_pid:pid,_age:age,_freq:freq,_started:Date.now(),responses:{}};
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('progress').classList.remove('hidden');
+  renderAll(); show(0);
+}
+
+function renderAll(){
+  const mount=document.getElementById('scenarios');
+  mount.innerHTML = SCENARIOS.map((s,i)=>`
+    <section class="scenario" data-i="${i}">
+      <div class="scen-head">
+        <span class="scen-domain">${s.domain}</span>
+        <span class="scen-num">${i+1} / ${SCENARIOS.length}</span>
+      </div>
+      <div class="scen-ctx"><strong>Context:</strong> ${esc(s.context)}</div>
+      <div class="scen-q">${esc(s.question)}</div>
+      <div class="opts">
+        <div class="opt" onclick="pick(${i},'opt1')"><span class="tag">Phương án 1</span><span class="body">${esc(s.opt1)}</span></div>
+        <div class="opt" onclick="pick(${i},'opt2')"><span class="tag">Phương án 2</span><span class="body">${esc(s.opt2)}</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-prev" onclick="prev(${i})" ${i===0?'style=visibility:hidden':''}>← Quay lại</button>
+        <button class="btn-next" id="next-${i}" onclick="next(${i})" disabled>${i===SCENARIOS.length-1?'Hoàn thành':'Tiếp theo →'}</button>
+      </div>
+    </section>`).join('');
+}
+function esc(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+function show(i){
+  document.querySelectorAll('.scenario').forEach(s=>s.classList.remove('active'));
+  const el=document.querySelector(`.scenario[data-i="${i}"]`);
+  if(el){el.classList.add('active');idx=i;
+    document.getElementById('fill').style.width=((i)/SCENARIOS.length*100)+'%';
+    document.getElementById('ptxt').textContent=`Câu hỏi ${i+1} / ${SCENARIOS.length}`;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+function pick(i,opt){
+  const s=SCENARIOS[i];
+  answers.responses[s.id]={chosen_opt:opt, chosen_sem: opt==='opt1'?s.opt1_sem:s.opt2_sem, ts:Date.now()};
+  const sec=document.querySelector(`.scenario[data-i="${i}"]`);
+  sec.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  sec.querySelectorAll('.opt')[opt==='opt1'?0:1].classList.add('sel');
+  document.getElementById('next-'+i).disabled=false;
+}
+function next(i){
+  if(i<SCENARIOS.length-1){show(i+1);}
+  else{finish();}
+}
+function prev(i){if(i>0)show(i-1);}
+
+async function finish(){
+  if(submitting) return;
+  submitting = true;
+  const btn = document.getElementById('next-' + (SCENARIOS.length - 1));
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = 'Đang lưu...';
+  }
+  answers._finished=Date.now();
+  const code = pid.toUpperCase().slice(0,12);
+  
+  // Submit data to server
+  try{
+    await fetch('https://script.google.com/macros/s/AKfycbwGaVpBHkKALW-4zMy1Qlbn6B_9clpUoS_p9Rto40mPlYc8vlh0ftsfJqTCfoVeBEh4/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(answers)
+    });
+  }catch(e){
+    console.error('save failed',e);
+    alert("Could not connect to the server. Your results were saved to LocalStorage instead.");
+    window.localStorage.setItem('resp:'+pid+':'+answers._started, JSON.stringify(answers));
+  }
+  
+  document.getElementById('progress').classList.add('hidden');
+  document.querySelectorAll('.scenario').forEach(s=>s.classList.remove('active'));
+  document.getElementById('fill').style.width='100%';
+  document.getElementById('done').classList.add('active');
+  document.getElementById('ccode').textContent=code;
+}
+</script>
+</body>
+</html>

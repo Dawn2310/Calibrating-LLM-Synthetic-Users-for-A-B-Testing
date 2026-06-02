@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A/B Design Preference Study</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+  :root{
+    --ink:#1a1714; --paper:#f4efe6; --card:#fffdf8; --accent:#c2410c;
+    --accent2:#0d5c63; --line:#ddd3c2; --muted:#7a6f60;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);
+    line-height:1.55;padding:0 0 80px}
+  .wrap{max-width:780px;margin:0 auto;padding:0 24px}
+  header{background:var(--ink);color:var(--paper);padding:40px 0 34px;margin-bottom:34px;
+    border-bottom:5px solid var(--accent)}
+  header .wrap{display:block}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:34px;line-height:1.05;letter-spacing:-.01em}
+  .sub{font-size:15px;color:#cabfae;margin-top:10px;max-width:600px}
+  .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    text-transform:uppercase;letter-spacing:.12em;background:var(--accent);color:#fff;
+    padding:4px 10px;border-radius:2px;margin-bottom:16px}
+  .intro{background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:26px 28px;margin-bottom:30px}
+  .intro h2{font-family:'Fraunces',serif;font-size:20px;margin-bottom:10px}
+  .intro p{font-size:14.5px;color:var(--muted);margin-bottom:10px}
+  .field{margin:16px 0}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+  .field input,.field select{width:100%;padding:10px 12px;border:1px solid var(--line);
+    border-radius:6px;font-family:inherit;font-size:14px;background:#fff}
+  .progress{position:sticky;top:0;z-index:10;background:var(--paper);padding:14px 0;
+    border-bottom:1px solid var(--line);margin-bottom:24px}
+  .progress .bar{height:7px;background:var(--line);border-radius:99px;overflow:hidden}
+  .progress .fill{height:100%;background:var(--accent);width:0;transition:width .3s}
+  .progress .txt{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+    margin-top:6px;text-transform:uppercase;letter-spacing:.1em}
+  .scenario{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:26px;margin-bottom:22px;display:none}
+  .scenario.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .scen-head{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
+  .scen-domain{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent2);font-weight:500}
+  .scen-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)}
+  .scen-ctx{font-size:15px;margin-bottom:6px}
+  .scen-q{font-size:13.5px;color:var(--muted);margin-bottom:20px;font-style:italic}
+  .opts{display:grid;gap:14px}
+  .opt{border:2px solid var(--line);border-radius:9px;padding:18px 20px;cursor:pointer;
+    transition:all .18s;background:#fff;position:relative}
+  .opt:hover{border-color:var(--accent2);transform:translateX(3px)}
+  .opt.sel{border-color:var(--accent);background:#fff6f0;box-shadow:0 3px 0 var(--accent)}
+  .opt .tag{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;
+    color:var(--accent2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;display:block}
+  .opt.sel .tag{color:var(--accent)}
+  .opt .body{font-size:14px;line-height:1.5}
+  .nav{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
+  button{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;
+    padding:12px 26px;border:none;border-radius:7px;cursor:pointer;transition:all .18s}
+  .btn-prev{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-prev:hover{border-color:var(--ink);color:var(--ink)}
+  .btn-next{background:var(--ink);color:var(--paper)}
+  .btn-next:hover{background:var(--accent)}
+  .btn-next:disabled{opacity:.4;cursor:not-allowed}
+  .btn-start{background:var(--accent);color:#fff;width:100%;padding:15px;font-size:15px;margin-top:8px}
+  .done{text-align:center;padding:50px 20px;display:none}
+  .done.active{display:block}
+  .done h2{font-family:'Fraunces',serif;font-size:30px;margin-bottom:14px}
+  .done .code{font-family:'IBM Plex Mono',monospace;font-size:22px;background:var(--ink);
+    color:var(--paper);padding:14px 24px;border-radius:8px;display:inline-block;margin:18px 0;letter-spacing:.1em}
+  .err{color:var(--accent);font-size:13px;margin-top:8px;min-height:18px}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="pill">Research Study &middot; ~6 min</span>
+  <h1>Which design would make you more likely to act?</h1>
+  <p class="sub">You'll see 23 pairs of real e-commerce interface designs. For each, pick the option you personally find more compelling. There are no right answers &mdash; we want your genuine preference.</p>
+</div></header>
+
+<div class="wrap">
+
+  <!-- INTRO / CONSENT -->
+  <section id="intro" class="intro">
+    <h2>Before you begin</h2>
+    <p>This study compares how real people and AI models judge web-design A/B tests. Your responses are anonymous and used only for aggregate research. Participation is voluntary; you may stop anytime by closing the tab.</p>
+    <p>Please answer based on <strong>your own preference as a shopper/user</strong>, not what you think is "correct."</p>
+    <div class="field">
+      <label>Participant ID (any nickname or leave blank for auto)</label>
+      <input id="pid" placeholder="e.g. rater_07">
+    </div>
+    <div class="field">
+      <label>Age group</label>
+      <select id="age"><option value="">Select…</option><option>18-24</option><option>25-34</option><option>35-44</option><option>45-54</option><option>55+</option></select>
+    </div>
+    <div class="field">
+      <label>How often do you shop online?</label>
+      <select id="freq"><option value="">Select…</option><option>Weekly+</option><option>Monthly</option><option>Rarely</option></select>
+    </div>
+    <button class="btn-start" onclick="start()">Start the study →</button>
+    <div class="err" id="introErr"></div>
+  </section>
+
+  <!-- PROGRESS -->
+  <div id="progress" class="progress hidden">
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="txt" id="ptxt">Question 1 of 23</div>
+  </div>
+
+  <!-- SCENARIOS MOUNT -->
+  <div id="scenarios"></div>
+
+  <!-- DONE -->
+  <section id="done" class="done">
+    <h2>Thank you! 🎉</h2>
+    <p>Your responses have been recorded and saved.</p>
+    <div class="code" id="ccode">—</div>
+    <p style="color:var(--muted);font-size:14px">You may now close this tab.</p>
+  </section>
+
+</div>
+
+<script>
+const SCENARIOS = [{"id": "UI-01", "domain": "UI/UX", "context": "Purchasing a laptop on Shopee Singapore, order total ~SGD 1,200", "metric": "checkout completion intent", "opt1": "Step-by-step checkout with progress indicator: Step 1 shows only delivery address form; Step 2 shows only payment method selection with PayNow highlighted; Step 3 shows order confirmation with subtotal, shipping fee, discounts, and 'Place Order' button. Each step on a separate screen.", "opt2": "Multi-section single-page checkout: delivery address form at top, then product summary with shipping options, then payment method selector (PayNow/card/COD), then voucher and Shopee Coins section, then order total with 'Place Order' button at bottom. All sections visible on one long page.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.565, "tier": "Low", "model_pa": 0.686}, {"id": "UI-03", "domain": "UI/UX", "context": "Ordering food on GrabFood from a pizza restaurant", "metric": "order intent", "opt1": "Grid-style menu: restaurant menu showing 2-column grid of item cards, each with a food photo, item name, short description, price below, and green circular add-to-cart button at bottom-right of each card.", "opt2": "List-style menu: Domino's Pizza page showing menu category tabs at top, then vertical list of items with item names, short promotional descriptions, discounted prices with crossed-out original prices, and green add-to-cart buttons aligned right.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.698, "tier": "Moderate", "model_pa": 0.497}, {"id": "UI-06", "domain": "UI/UX", "context": "Browsing a product on Shopee mobile app", "metric": "add to cart intent", "opt1": "Sticky bottom CTA bar: three buttons ('Chat Now', 'Add to Cart', 'Buy with Vouchers') remain fixed at the bottom of the screen at all times, even after scrolling past the product image and into the ratings section.", "opt2": "Static CTA buttons: 'Add To Cart' and 'Buy Now' buttons appear only in the product details area near the price. When the user scrolls down to reviews or related products, the buttons scroll away and are no longer visible without scrolling back up.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.779, "tier": "Moderate", "model_pa": 0.771}, {"id": "UI-07", "domain": "UI/UX", "context": "Viewing a product on Tiki Vietnam e-commerce platform", "metric": "purchase confidence intent", "opt1": "Minimal trust display: product page shows only the product title, price, rating stars, and 'Buy Now' / 'Add to Cart' buttons. No explicit trust badges, guarantees, or seller verification visible near the purchase buttons.", "opt2": "Full trust badge display: product page shows six trust signals below the buy buttons — '100% Authentic' badge, 'Freeship' badge, '200% Refund for Fake Goods' guarantee, '30-Day Return' policy, 'Fast 2-Hour Delivery' promise, and 'Official Seller' badge with seller verification checkmark.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.889, "tier": "High", "model_pa": 0.928}, {"id": "UI-09", "domain": "UI/UX", "context": "Browsing product category page on fashion e-commerce", "metric": "product exploration intent", "opt1": "Hover zoom preview: when hovering over a product card image on Lazada, an enlarged product image overlay appears showing the product in detail, with Buy Now and Add to Cart CTAs visible underneath the zoomed image.", "opt2": "Find Similar overlay: when hovering over a product card on Zalora, a 'Find Similar' button overlay appears on the product image. Clicking requires navigating to the full product page to see details — no quick preview of the current product.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.814, "tier": "High", "model_pa": 0.988}, {"id": "UI-10", "domain": "UI/UX", "context": "Completing a booking on Booking.com for a hotel in Dubai", "metric": "booking completion intent", "opt1": "Quick mobile checkout with minimal steps: Lazada-style mobile checkout sheet showing discounted price, original price with discount percentage, product options (color/size), quantity selector, and a single prominent 'Buy Now' CTA — no explicit account creation required to proceed.", "opt2": "Signed-in checkout with progress steps: Booking.com checkout shows the user is signed in, displays a multi-step progress bar (Your Selection → Your Details → Final Step), guest details form pre-filled with account info, booking summary on the right, and price breakdown.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.71, "tier": "Moderate", "model_pa": 0.714}, {"id": "UI-11", "domain": "UI/UX", "context": "Comparing product images on an e-commerce fashion product page", "metric": "purchase intent", "opt1": "Lifestyle product gallery: same Lazada jacket product page but gallery shows a lifestyle image of someone wearing the jacket. Same layout below: product title, sale price, discount, delivery promise, return policy, color options, size options, quantity selector, Buy Now and Add to Cart CTAs.", "opt2": "White-background product gallery: Lazada product page showing a jacket photographed on a plain white background. Gallery shows product from front angle. Below: rating, sale price with large discount percentage, delivery range, return policy, size and color selectors, quantity selector, Buy Now and Add to Cart CTAs.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.691, "tier": "Moderate", "model_pa": 0.431}, {"id": "UI-12", "domain": "UI/UX", "context": "Browsing headphones product page on Lazada with video content available", "metric": "engagement intent", "opt1": "Static product gallery: Lazada product page showing a thumbnail strip of static product images for headphones — multiple angles, feature highlight slides, and product-only photography. No video content.", "opt2": "Video-first gallery: same Lazada headphones product page but gallery leads with a video thumbnail showing a play overlay icon. Remaining thumbnails show feature slides and product images. Product title, rating, brand link, sale banner, discount price, promotion chip, delivery details visible.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.702, "tier": "Moderate", "model_pa": 0.432}, {"id": "COPY-04", "domain": "Copy/Messaging", "context": "Fitness app sending afternoon push notification to encourage workout", "metric": "notification open intent", "opt1": "Goal-anchored copy: notification reads 'You haven't closed your Move ring today' and 'You've reached a new Move goal' — references the user's specific daily ring progress and streak status.", "opt2": "Generic motivation copy: notification reads 'Are you ready to do some exercises? Today is a new day! Tap to start now' — no personalization, no reference to user's history or goals.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.754, "tier": "Moderate", "model_pa": 0.02}, {"id": "COPY-05", "domain": "Copy/Messaging", "context": "User considering cancelling their Netflix streaming subscription", "metric": "retention intent", "opt1": "Pause-first retention: manage membership page shows four options — 'Change plan' (switch tier), 'Pause for a month' (temporarily suspend billing), 'Cancel' (terminate), and 'Return to watching' (keep). Pause option is visually prominent as a middle-ground alternative.", "opt2": "Binary cancel options: account page shows two choices — 'Cancel' (to terminate subscription) and 'Return to watching' (to keep current plan). No intermediate options.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.921, "tier": "High", "model_pa": 0.038}, {"id": "COPY-06", "domain": "Copy/Messaging", "context": "Product page on Shopee showing purchase action buttons", "metric": "conversion intent", "opt1": "Single prominent CTA: product page shows only one large 'Buy Now' button (or 'Buy with Vouchers' in Shopee's case) as the primary action. 'Add to Cart' is either absent or de-emphasized as a text link.", "opt2": "Dual CTA with cart emphasis: Shopee product page shows two buttons side by side — 'Add To Cart' (outlined/secondary style) and 'Buy Now' (filled/primary style). Includes product option selector and quantity picker above the buttons.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.8, "tier": "Moderate", "model_pa": 0.819}, {"id": "COPY-08", "domain": "Copy/Messaging", "context": "Reading product description on an e-commerce product page", "metric": "purchase confidence intent", "opt1": "Narrative description: Lazada/Uniqlo style product details showing flowing paragraph copy describing the product's design story, fabric technology, seasonal versatility, and styling suggestions. Reads like editorial content rather than a feature list.", "opt2": "Benefit-led bullet points: Amazon 'About this item' section showing 5-6 bullet points, each with a bold benefit heading followed by a descriptive claim. Example for sandals: comfort, use cases, arch support, grip, styling. Concise, scannable format.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.734, "tier": "Moderate", "model_pa": 0.817}, {"id": "COPY-09", "domain": "Copy/Messaging", "context": "User submitting a form with missing required fields on Booking.com checkout", "metric": "form completion intent", "opt1": "Friendly error guidance: same form errors but presented with a softer tone — 'Oops! We need your name to complete the booking' and 'We'll send your confirmation here — please add your email'. Conversational copy instead of command-style.", "opt2": "Technical validation errors: Booking.com checkout form showing red-highlighted required fields with validation messages like 'Please enter your first name' and 'Email address is required' after submitting incomplete input. Standard form validation style.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.807, "tier": "High", "model_pa": 0.183}, {"id": "COPY-10", "domain": "Copy/Messaging", "context": "Viewing product price on Vietnamese e-commerce platform Tiki", "metric": "purchase intent", "opt1": "Anchored discount display: product page shows the sale price prominently, with the original price crossed out above it and a '-X%' discount percentage badge. Makes the saving explicit and visually prominent.", "opt2": "Clean price display: product page shows only the current selling price. No crossed-out original price, no discount percentage badge. The price stands alone without anchoring.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.685, "tier": "Moderate", "model_pa": 0.715}, {"id": "COPY-11", "domain": "Copy/Messaging", "context": "Viewing subscription pricing page on a music streaming service", "metric": "upgrade intent", "opt1": "Comparison table pricing: Netflix-style pricing page showing all tiers (Mobile, Basic, Standard, Premium) in a comparison table with rows for price, resolution, devices, simultaneous streams, downloads. 'Most Popular' badge on Standard tier.", "opt2": "Feature-rich pricing cards: Spotify Premium pricing page showing Individual and Student plan cards with monthly prices, benefit bullet points (ad-free listening, offline playback, etc.), 'cancel anytime' reassurance copy, and prominent CTA buttons.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.58, "tier": "Low", "model_pa": 0.439}, {"id": "REC-01", "domain": "Recommendation", "context": "Homepage of Shopee e-commerce platform", "metric": "click intent", "opt1": "Personalized discovery section: 'Daily Discover' grid showing product recommendations with prices, sales count as social proof, discount badges, and product category labels. No countdown timer, no urgency signals.", "opt2": "Urgency-driven section: 'Flash Deals' section at top of homepage with countdown timer, discount badges showing '-50%' and '-40%', product cards with sale prices, and 'selling fast' indicators creating time pressure.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.705, "tier": "Moderate", "model_pa": 0.279}, {"id": "REC-02", "domain": "Recommendation", "context": "Search results page for 'laptop' on Shopee", "metric": "engagement intent", "opt1": "Price-based sort default: search results sorted by 'Price: Low to High', showing cheapest products first. Sort dropdown visible at top showing the selected option.", "opt2": "Relevance sort default: search results sorted by 'Best Match' (platform algorithm), showing products ranked by a combination of relevance, popularity, and seller quality. Sort dropdown visible at top.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.69, "tier": "Moderate", "model_pa": 0.469}, {"id": "REC-03", "domain": "Recommendation", "context": "Filter sidebar on e-commerce search results page", "metric": "filter usage intent", "opt1": "Fully expanded filter panel: Amazon-style left sidebar showing all filter categories expanded — customer reviews, brand checkboxes, price range slider, deals and discounts, color options, features, condition, power source, and connectivity. All visible without clicking 'See more'.", "opt2": "Collapsed progressive disclosure: Amazon-style left sidebar showing only 'Popular shopping ideas' summary with a 'See more' control. User must click to reveal full filter options. Reduces initial visual complexity.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.723, "tier": "Moderate", "model_pa": 0.817}, {"id": "REC-04", "domain": "Recommendation", "context": "Product cards on search results grid", "metric": "click through intent", "opt1": "Full social proof card: Shopee product card showing product image, title, price range, discount badge, star rating (4.9/5), ratings count, and '10K+ sold' as social proof. Multiple trust signals per card.", "opt2": "Minimal card: Tiki product card showing product image, price, star rating, and sold count — no discount badge, no detailed ratings breakdown. Cleaner layout with fewer signals per card.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.753, "tier": "Moderate", "model_pa": 0.771}, {"id": "REC-06", "domain": "Recommendation", "context": "Recommendation layout on streaming/media platform homepage", "metric": "content exploration intent", "opt1": "Personalized grid: Spotify dark-mode desktop app showing a grid layout with 'Made For You' section, Daily Mix playlists, Discover Weekly, and recent listening. Cards arranged in a 2D grid rather than horizontal rows.", "opt2": "Horizontal carousel rows: Netflix dark-mode homepage showing multiple horizontal recommendation carousels — 'Watch-Party Picks', 'Top Searches', 'Today's Top Picks for You'. Each row is a horizontal scrollable strip of content cards.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.635, "tier": "Moderate", "model_pa": 0.242}, {"id": "REC-07", "domain": "Recommendation", "context": "Urgency and scarcity signals on hotel booking platform", "metric": "booking urgency intent", "opt1": "Heavy urgency signals: Booking.com room options showing 'We have 7 left', 'Limited-time Deal', '30% off' badge, crossed-out original price with current lower price, and 'Reserve' CTA. Multiple scarcity and time-pressure signals stacked.", "opt2": "Social proof signals: Booking.com property showing 'Still interested?' section with recently viewed properties, review rating with overall score and review count, and category ratings (Staff, etc.). Encourages return through familiarity rather than pressure.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.733, "tier": "Moderate", "model_pa": 0.497}, {"id": "REC-08", "domain": "Recommendation", "context": "Cross-sell recommendations on product page", "metric": "additional purchase intent", "opt1": "Individual recommendations: Shopee 'From the Same Shop' and 'You May Also Like' sections showing individual product cards with images, prices, ratings, sold counts, and discount badges. Each item is independent — no bundling.", "opt2": "Bundle upsell: Amazon 'Frequently Bought Together' module showing three items bundled with selected checkboxes, a combined total price, and a single 'Add all 3 to Cart' CTA. Encourages buying complementary products as a set.", "opt1_sem": "B", "opt2_sem": "A", "surs": 0.722, "tier": "Moderate", "model_pa": 0.317}, {"id": "REC-11", "domain": "Recommendation", "context": "Re-engagement signals for previously viewed hotels on Booking.com", "metric": "return booking intent", "opt1": "Price-drop signal: hotel result cards showing crossed-out original prices with lower current prices and 'Getaway Deal' labels. Emphasizes that waiting paid off — prices went down.", "opt2": "Recently-viewed reminder: 'Still interested?' section showing previously viewed properties and recent searches. Emphasizes familiarity and continuity rather than price change.", "opt1_sem": "A", "opt2_sem": "B", "surs": 0.742, "tier": "Moderate", "model_pa": 0.79}];
+let answers = {}, idx = 0, pid = '', submitting = false;
+
+function start(){
+  const age=document.getElementById('age').value;
+  const freq=document.getElementById('freq').value;
+  if(!age||!freq){document.getElementById('introErr').textContent='Please fill age and shopping frequency.';return;}
+  pid = document.getElementById('pid').value.trim() || ('rater_'+Math.random().toString(36).slice(2,8));
+  answers = {_pid:pid,_age:age,_freq:freq,_started:Date.now(),responses:{}};
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('progress').classList.remove('hidden');
+  renderAll(); show(0);
+}
+
+function renderAll(){
+  const mount=document.getElementById('scenarios');
+  mount.innerHTML = SCENARIOS.map((s,i)=>`
+    <section class="scenario" data-i="${i}">
+      <div class="scen-head">
+        <span class="scen-domain">${s.domain}</span>
+        <span class="scen-num">${i+1} / ${SCENARIOS.length}</span>
+      </div>
+      <div class="scen-ctx"><strong>Context:</strong> ${esc(s.context)}</div>
+      <div class="scen-q">Which option makes you more likely to act? (${esc(s.metric)})</div>
+      <div class="opts">
+        <div class="opt" onclick="pick(${i},'opt1')"><span class="tag">Option 1</span><span class="body">${esc(s.opt1)}</span></div>
+        <div class="opt" onclick="pick(${i},'opt2')"><span class="tag">Option 2</span><span class="body">${esc(s.opt2)}</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-prev" onclick="prev(${i})" ${i===0?'style=visibility:hidden':''}>← Back</button>
+        <button class="btn-next" id="next-${i}" onclick="next(${i})" disabled>${i===SCENARIOS.length-1?'Finish':'Next →'}</button>
+      </div>
+    </section>`).join('');
+}
+function esc(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+function show(i){
+  document.querySelectorAll('.scenario').forEach(s=>s.classList.remove('active'));
+  const el=document.querySelector(`.scenario[data-i="${i}"]`);
+  if(el){el.classList.add('active');idx=i;
+    document.getElementById('fill').style.width=((i)/SCENARIOS.length*100)+'%';
+    document.getElementById('ptxt').textContent=`Question ${i+1} of ${SCENARIOS.length}`;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+function pick(i,opt){
+  const s=SCENARIOS[i];
+  answers.responses[s.id]={chosen_opt:opt, chosen_sem: opt==='opt1'?s.opt1_sem:s.opt2_sem, ts:Date.now()};
+  const sec=document.querySelector(`.scenario[data-i="${i}"]`);
+  sec.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  sec.querySelectorAll('.opt')[opt==='opt1'?0:1].classList.add('sel');
+  document.getElementById('next-'+i).disabled=false;
+}
+function next(i){
+  if(i<SCENARIOS.length-1){show(i+1);}
+  else{finish();}
+}
+function prev(i){if(i>0)show(i-1);}
+
+async function finish(){
+  if(submitting) return;
+  submitting = true;
+  const btn = document.getElementById('next-' + (SCENARIOS.length - 1));
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+  }
+  answers._finished=Date.now();
+  const code = pid.toUpperCase().slice(0,12);
+  
+  // Submit data to server
+  try{
+    await fetch('https://script.google.com/macros/s/AKfycbwGaVpBHkKALW-4zMy1Qlbn6B_9clpUoS_p9Rto40mPlYc8vlh0ftsfJqTCfoVeBEh4/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(answers)
+    });
+  }catch(e){
+    console.error('save failed',e);
+    alert("Could not connect to the server. Your results were saved to LocalStorage instead.");
+    window.localStorage.setItem('resp:'+pid+':'+answers._started, JSON.stringify(answers));
+  }
+  
+  document.getElementById('progress').classList.add('hidden');
+  document.querySelectorAll('.scenario').forEach(s=>s.classList.remove('active'));
+  document.getElementById('fill').style.width='100%';
+  document.getElementById('done').classList.add('active');
+  document.getElementById('ccode').textContent=code;
+}
+</script>
+</body>
+</html>

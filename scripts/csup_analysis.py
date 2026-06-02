@@ -301,7 +301,7 @@ def exp3_order_robustness(df, output_dir):
     
     # Align indices
     common = orig_agg.index.intersection(swap_agg.index)
-    counter_agg = (orig_agg.loc[common] + (1 - swap_agg.loc[common])) / 2
+    counter_agg = (orig_agg.loc[common] + swap_agg.loc[common]) / 2
     
     # R_order per test case
     r_order = {}
@@ -976,7 +976,7 @@ def exp9_pipeline_comparison(df, output_dir):
         orig_m = orig[orig['model'] == m].groupby(['test_id', 'persona_id'])['choice_A'].mean()
         swap_m = swap[swap['model'] == m].groupby(['test_id', 'persona_id'])['choice_A'].mean()
         common_m = orig_m.index.intersection(swap_m.index)
-        counter_m = (orig_m.loc[common_m] + (1 - swap_m.loc[common_m])) / 2
+        counter_m = (orig_m.loc[common_m] + swap_m.loc[common_m]) / 2
         csup_votes[m] = (counter_m > 0.5).astype(int)
     
     csup_df = pd.DataFrame(csup_votes).dropna()

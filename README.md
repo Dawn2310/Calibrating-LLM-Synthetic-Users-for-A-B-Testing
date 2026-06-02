@@ -217,11 +217,11 @@ Each A/B comparison is run under three order conditions:
 If you use CSUP in your research, please cite:
 
 ```
-@misc{csup2026,
-  title  = {From Synthetic Users to Calibrated Instruments: Decomposing Uncertainty in LLM-Based A/B Testing},
-  author = {Anonymous},
-  year   = {2026},
-  note   = {Manuscript under review}
+@article{csup2026,
+  title     = {From Synthetic Users to Calibrated Instruments: Decomposing Uncertainty in LLM-Based A/B Testing},
+  author    = {Nguyen Luong Hai Dang and Duong Quoc Huu},
+  journal   = {Preprint},
+  year      = {2026}
 }
 ```
 
