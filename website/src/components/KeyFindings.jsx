@@ -66,8 +66,8 @@ export default function KeyFindings() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={varianceData} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" horizontal={false} />
-                  <XAxis type="number" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} />
-                  <YAxis dataKey="name" type="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 12 }} width={100} />
+                  <XAxis type="number" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                  <YAxis dataKey="name" type="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 12 }} width={100} axisLine={false} tickLine={false} />
                   <Tooltip content={<CustomTooltip />} />
                   <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                     {varianceData.map((entry, index) => (
@@ -117,8 +117,8 @@ export default function KeyFindings() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={personaData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                  <XAxis dataKey="name" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} />
-                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} domain={[50, 100]} />
+                  <XAxis dataKey="name" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} domain={[50, 100]} axisLine={false} tickLine={false} />
                   <Tooltip content={<CustomTooltip />} />
                   <Bar dataKey="value" fill="#6366f1" radius={[4, 4, 0, 0]} maxBarSize={60} />
                 </BarChart>

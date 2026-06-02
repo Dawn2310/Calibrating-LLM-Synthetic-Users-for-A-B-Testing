@@ -45,8 +45,8 @@ export default function Results() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={varianceData} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" horizontal={false} />
-                  <XAxis type="number" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} />
-                  <YAxis dataKey="name" type="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} width={110} />
+                  <XAxis type="number" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                  <YAxis dataKey="name" type="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} width={110} axisLine={false} tickLine={false} />
                   <Tooltip content={<CustomTooltip />} />
                   <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                     {varianceData.map((entry, index) => (
@@ -68,8 +68,8 @@ export default function Results() {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={calibrationPipelineData} margin={{ top: 20, right: 30, left: 0, bottom: 25 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                  <XAxis dataKey="stage" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} angle={-25} textAnchor="end" />
-                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} />
+                  <XAxis dataKey="stage" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} angle={-25} textAnchor="end" axisLine={false} tickLine={false} />
+                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
                   <Tooltip content={<CustomTooltip suffix=" StdDev" />} />
                   <Line type="monotone" dataKey="stdev" stroke="#06b6d4" strokeWidth={3} dot={{ r: 6, fill: '#06b6d4', strokeWidth: 2, stroke: '#0f172a' }} />
                 </LineChart>
@@ -87,8 +87,8 @@ export default function Results() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={personaDepthData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                  <XAxis dataKey="name" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} />
-                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} domain={[50, 80]} />
+                  <XAxis dataKey="name" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} domain={[50, 80]} axisLine={false} tickLine={false} />
                   <Tooltip content={<CustomTooltip />} />
                   <Bar dataKey="value" fill="#6366f1" radius={[4, 4, 0, 0]} maxBarSize={60} />
                 </BarChart>
@@ -106,8 +106,8 @@ export default function Results() {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={ensembleData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                  <XAxis dataKey="k" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} />
-                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} domain={[0.85, 1.05]} />
+                  <XAxis dataKey="k" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} domain={[0.85, 1.05]} axisLine={false} tickLine={false} />
                   <Tooltip content={<CustomTooltip suffix="" />} />
                   <Line type="monotone" dataKey="min" stroke="#a855f7" strokeWidth={3} dot={{ r: 6, fill: '#a855f7' }} />
                 </LineChart>
