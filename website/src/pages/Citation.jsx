@@ -47,7 +47,7 @@ export default function Citation() {
             <p className="text-slate-400 text-sm mb-6">
               The full CSUP codebase, analysis scripts, and cleaned datasets are publicly available.
             </p>
-            <a href="#" className="secondary-button text-sm">View on GitHub</a>
+            <a href="https://github.com/Dawn2310/Calibrating-LLM-Synthetic-Users-for-A-B-Testing" target="_blank" rel="noopener noreferrer" className="secondary-button text-sm">View on GitHub</a>
           </div>
 
           <div className="glass-card p-6 flex flex-col justify-center">
