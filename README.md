@@ -155,12 +155,12 @@ Each A/B comparison is run under three order conditions:
 
 | Source | Share of total variance |
 |---|---|
+| Prompt wording | 41.2% |
 | Semantic design signal | 32.2% |
 | Repeat sampling | 25.1% |
-| Prompt wording | 24.3% |
-| Display order | 7.5% |
-| Model family | 5.4% |
-| Persona depth | 5.5% |
+| Display order | 0.7% |
+| Persona depth | 0.6% |
+| Model family | 0.3% |
 
 > Prompt wording and repeat sampling together explain ~50% of variance — raw LLM A/B testing can measure noise rather than design quality.
 
@@ -171,7 +171,7 @@ Each A/B comparison is run under three order conditions:
 | Raw single-model output | 0.333 |
 | + Counterbalancing | 0.090 |
 | + Ensemble aggregation | 0.320 |
-| Full CSUP pipeline | **0.075** |
+| Full CSUP pipeline | **0.077** |
 
 ### SURS — Synthetic User Reliability Score
 
@@ -185,9 +185,9 @@ Each A/B comparison is run under three order conditions:
 
 | Persona type | Full 4-model consensus |
 |---|---|
-| Demographic | 71.1% |
-| Biographical | 62.7% |
-| Interview-style | 65.5% |
+| Demographic | 70.8% |
+| Biographical | 62.6% |
+| Interview-style | 63.6% |
 
 > Richer personas reduce cross-model consensus rather than improving it.
 
