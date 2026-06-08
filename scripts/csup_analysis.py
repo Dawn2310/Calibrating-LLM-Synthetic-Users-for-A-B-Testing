@@ -992,7 +992,7 @@ def exp9_pipeline_comparison(df, output_dir):
               f"[{prefs.min():.2f}, {prefs.max():.2f}]")
     
     # --- Figure: pipeline comparison ---
-    fig, axes = plt.subplots(1, 4, figsize=(16, 4), sharey=True)
+    fig, axes = plt.subplots(1, 4, figsize=(16, 6), sharey=True)
     for ax, (name, prefs) in zip(axes, conditions.items()):
         common_tests = sorted(set(prefs.index) & set(tests))
         vals = [prefs.get(t, 0.5) for t in common_tests]
@@ -1000,9 +1000,9 @@ def exp9_pipeline_comparison(df, output_dir):
         ax.barh(range(len(common_tests)), vals, color=colors, alpha=0.8)
         ax.axvline(x=0.5, color='gray', linestyle='--', alpha=0.5)
         ax.set_xlim(0, 1)
-        ax.set_title(name, fontsize=10)
+        ax.set_title(name, fontsize=12)
         ax.set_yticks(range(len(common_tests)))
-        ax.set_yticklabels(common_tests, fontsize=7)
+        ax.set_yticklabels(common_tests, fontsize=9)
     axes[0].set_ylabel('Test Case')
     fig.suptitle('Pipeline Comparison: P(A) per Test Case', fontsize=12)
     plt.tight_layout()
