@@ -219,7 +219,7 @@ If you use CSUP in your research, please cite:
 ```
 @article{csup2026,
   title     = {From Synthetic Users to Calibrated Instruments: Decomposing Uncertainty in LLM-Based A/B Testing},
-  author    = {Nguyen Luong Hai Dang and Duong Quoc Huu},
+  author    = {Nguyen Luong Hai Dang and Duong Quoc Huu and Dinh Dong Tien and Le Dang Thai An},
   journal   = {Preprint},
   year      = {2026}
 }
